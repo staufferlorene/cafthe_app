@@ -1,17 +1,16 @@
-import React, {use, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import ProductCard from "../components/ProductCard";
 import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
+import ProductCard from "../components/ProductCard";
 
-function ProductList(props) {
+function PageCoffee(props) {
     const [produits, setProduits] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchProduits = async () => {
             try {
-                const response = await axios.get("http://localhost:3000/api/produit");
+                const response = await axios.get("http://localhost:3000/api/categorie/cafe");
                 setProduits(response.data);
             } catch (error){
                 console.error("Erreur de chargement des produits", error);
@@ -46,14 +45,15 @@ function ProductList(props) {
 
     return (
         <div>
-            <h3>Liste des produits</h3>
-                <div className="product-list">
-                    {produits.map((produit) => (
-                        <ProductCard key={produit.Id_produit} produit={produit} />
-                    ))}
-                </div>
+            <h3>Liste des cafés</h3>
+            <div className="product-list">
+                {produits.map((produit) => (
+                    <ProductCard key={produit.Id_produit} produit={produit} />
+                ))}
+            </div>
         </div>
     );
 }
 
-export default ProductList;
+
+export default PageCoffee;
