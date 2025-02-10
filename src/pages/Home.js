@@ -1,3 +1,4 @@
+import "../styles/Global.css"
 import React from 'react';
 import ProductList from "./ProductList";
 

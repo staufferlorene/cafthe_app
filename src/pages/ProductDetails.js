@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Link, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import axios from "axios";
 
 function ProductDetails(props) {
@@ -24,8 +24,8 @@ function ProductDetails(props) {
                 {/*image*/}
                 <h2>{produits.Nom_produit}</h2>
                 <p>Description: {produits.Description}</p>
-                <p><strong>Prix:</strong> {produits.Prix_HT}</p>
-                <p><strong>Stock:</strong> {produits.Stock}</p>
+                <p>Prix: {produits.Prix_HT}</p>
+                <p>Stock: {produits.Stock}</p>
         </div>
     );
 }
