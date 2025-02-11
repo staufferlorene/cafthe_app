@@ -1,7 +1,12 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import axios from "axios";
+import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function Login(props) {
+    const { login } = useContext(AuthContext); // accès à la fonction login venant du contexte
+    const navigate = useNavigate(); // la navigation
+
    const [email, setEmail] = useState("");
    const [mdp, setMdp] = useState("");
    const [errorMsg, setErrorMsg] = useState("");
@@ -9,17 +14,36 @@ function Login(props) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setErrorMsg("");
 
         try {
             const response = await axios.post("http://localhost:3000/api/login",
                 {
-                    email,
-                    mdp,
+                    "Mail_client": email,
+                    "Mdp_client": mdp,
                 },
             );
 
             const { token, client } = response.data;
-        } catch (error) {}
+
+            //On met à jour le contexte d'authentification
+            login(token, client);
+
+            //Redirection du client vers une page
+            navigate("/");
+        } catch (error) {
+            console.error("Erreur lors de la navigation : ", error);
+            if (error.response) {
+                console.error("Détails de la réponse: ", error.response.data);
+                if (error.response.data.message) {
+                    setErrorMsg(error.response.data.message);
+                } else {
+                    setErrorMsg("Erreur inconnue");
+                }
+            } else {
+                setErrorMsg("Erreur de connexion");
+            }
+        }
     };
 
     return (
@@ -30,7 +54,7 @@ function Login(props) {
                         <li>
                             <label>Saisir votre mail :</label>
                             <input
-                                type="text"
+                                type="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
@@ -46,6 +70,9 @@ function Login(props) {
                             />
                         </li>
                     </ul>
+                    {errorMsg && (
+                        <div>{errorMsg}</div>
+                    )}
                 <button type="submit">Se connecter</button>
             </form>
         </div>
