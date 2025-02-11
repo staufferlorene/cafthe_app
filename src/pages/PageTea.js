@@ -4,14 +4,14 @@ import Skeleton from "react-loading-skeleton";
 import ProductCard from "../components/ProductCard";
 
 function PageTea(props) {
-    const [produits, setProduits] = useState([]);
+    const [tea, setTea] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchProduits = async () => {
             try {
                 const response = await axios.get("http://localhost:3000/api/categorie/the");
-                setProduits(response.data);
+                setTea(response.data);
             } catch (error){
                 console.error("Erreur de chargement des produits", error);
             } finally {
@@ -47,7 +47,7 @@ function PageTea(props) {
         <div>
             <h3>Liste des thés</h3>
             <div className="product-list">
-                {produits.map((produit) => (
+                {tea.map((produit) => (
                     <ProductCard key={produit.Id_produit} produit={produit} />
                 ))}
             </div>

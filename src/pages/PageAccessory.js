@@ -4,14 +4,14 @@ import Skeleton from "react-loading-skeleton";
 import ProductCard from "../components/ProductCard";
 
 function PageAccessory(props) {
-    const [produits, setProduits] = useState([]);
+    const [accessory, setAccessory] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchProduits = async () => {
             try {
                 const response = await axios.get("http://localhost:3000/api/categorie/accessoire");
-                setProduits(response.data);
+                setAccessory(response.data);
             } catch (error){
                 console.error("Erreur de chargement des produits", error);
             } finally {
@@ -47,7 +47,7 @@ function PageAccessory(props) {
         <div>
             <h3>Liste des accessoires</h3>
             <div className="product-list">
-                {produits.map((produit) => (
+                {accessory.map((produit) => (
                     <ProductCard key={produit.Id_produit} produit={produit} />
                 ))}
             </div>
