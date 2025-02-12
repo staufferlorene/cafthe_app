@@ -24,7 +24,7 @@ function ProductDetails(props) {
                 {/*image*/}
                 <h2>{produits.Nom_produit}</h2>
                 <p>Description: {produits.Description}</p>
-                <p>Prix: {produits.Prix_HT}</p>
+                <p>Prix: {produits.Prix_HT} €</p>
                 <p>Stock: {produits.Stock}</p>
         </div>
     );

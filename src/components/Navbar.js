@@ -4,11 +4,6 @@ import {Link} from "react-router-dom";
 import {AuthContext} from "../context/AuthContext";
 
 function Navbar(props) {
-    const { user, isAuthenticated, logout } = useContext(AuthContext);
-
-    const handleLogout = () => {
-        logout();
-    };
 
     return (
         <nav>
@@ -17,17 +12,6 @@ function Navbar(props) {
                 <li><Link to={`/categorie/the`}>Thé</Link></li>
                 <li><Link to={`/categorie/accessoire`}>Accessoire</Link></li>
             </ul>
-
-            <div>
-                {isAuthenticated ? (
-                    <>
-                        <span>Bonjour {user.prenom} {user.nom}</span>
-                        <button onClick={handleLogout}>Se déconnecter</button>
-                    </>
-                ) : (
-                    <Link to={`/login`}>Se connecter</Link>
-            )}
-            </div>
         </nav>
     );
 }

@@ -3,6 +3,7 @@ import axios from "axios";
 import ProductCard from "../components/ProductCard";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import "../styles/ProductList.css"
 
 function ProductList(props) {
     const [produits, setProduits] = useState([]);

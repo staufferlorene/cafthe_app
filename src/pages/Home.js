@@ -6,6 +6,11 @@ function Home(props) {
     return (
         <div>
             <h1>Bienvenue chez Cafthé</h1>
+
+            <option value=''>---</option>
+
+
+
             <ProductList />
         </div>
     );

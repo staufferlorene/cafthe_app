@@ -1,10 +1,45 @@
-.header {
+/* Conteneur principal, aligner les éléments sur une ligne */
+.header-container {
     display: flex;
-    flex-direction: row;
-    background-color: aquamarine;
+    justify-content: space-between; /* Espacement entre les éléments */
+    align-items: center; /* Alignement vertical centré */
+    padding: 10px 20px;
 }
 
-/* Style pour les liens */
+/* Pour les éléments du logo */
+.logo {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Pour les éléments de la partie droite (connexion et panier) */
+.header {
+    display: flex;
+    align-items: center; /* Alignement vertical centré */
+    gap: 20px; /* Espacement entre les éléments */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Style des liens */
 .header a {
-    text-decoration: none;
+    color: #333; /* Couleur des liens */
+    font-weight: bold;
+}
+
+ /*Style des boutons*/
+.header button {
+    background-color: #65451F;
+    color: #FBFBFB;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 8px;
+}
+
+.header button:hover {
+    background-color: #46341F; /* Couleur au survol */
 }

@@ -45,7 +45,11 @@ table {
 }
 
 
-/*!* Style pour les liens *!*/
-/* a {*/
-/*    text-decoration: none;*/
-/*}*/
+/* Style des liens */
+ a {
+    text-decoration: none;
+}
+
+ body {
+     background-color: #EBD2B2;
+ }
