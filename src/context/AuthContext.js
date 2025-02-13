@@ -30,7 +30,7 @@ export function AuthProvider({ children }) {
       }
     }, [token, user]);
 
-    // Connexion (on reçoit les données envoyées par l'API : toekn + infos clients)
+    // Connexion (on reçoit les données envoyées par l'API : token + infos clients)
     const login = (jwt, userData) => {
         setToken(jwt);
         setUser(userData);

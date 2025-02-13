@@ -1,23 +1,25 @@
 /* Style général de la carte produit */
 .product-card {
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre douce autour de la carte */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre autour de la carte */
     padding: 20px;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation au survol */
-    width: 100%;
-    max-width: 300px; /* Limite la largeur de la carte */
+    width: calc(33% - 20px);
+    max-width: 300px;
     margin: 10px;
     background-color: #C8AE7D;
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
 /* Effet au survol de la carte */
 .product-card:hover {
-    transform: translateY(-5px); /* Légère élévation lors du survol */
+    transform: translateY(-5px); /* Animation au survol */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Ombre plus marquée */
 }
 
-/* Style du titre du produit */
+/* Style du titre */
 .product-card h3 {
     margin-bottom: 10px;
 }
@@ -27,7 +29,7 @@
     margin-bottom: 15px;
 }
 
- /*Style du bouton*/
+ /* Style du bouton */
 .details-btn {
     background-color: #65451F;
     color: #FBFBFB;
@@ -37,8 +39,11 @@
     text-align: center;
 }
 
-
-/* Effet au survol du bouton */
 .details-btn:hover {
-    background-color: #46341F; /* Couleur plus sombre au survol */
+    background-color: #46341F;
+}
+
+.product-img {
+    width: 200px;
+    border-radius: 8px ;
 }

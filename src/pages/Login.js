@@ -2,6 +2,7 @@ import React, {useContext, useState} from 'react';
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import "../styles/Global.css"
 
 function Login(props) {
     const { login } = useContext(AuthContext); // accès à la fonction login venant du contexte

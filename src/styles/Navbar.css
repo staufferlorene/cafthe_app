@@ -4,3 +4,7 @@
     justify-content: center;
     gap: 60px;
 }
+
+.nav a {
+    color: black;
+}

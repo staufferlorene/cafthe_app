@@ -1,23 +1,7 @@
 /* Conteneur global */
 .product-list {
     display: flex;
-    flex-wrap: wrap; /* Permet de revenir à une nouvelle ligne si nécessaire */
-    justify-content: space-between; /* Distribution uniforme des cartes */
-    gap: 20px; /* Espacement entre les cartes */
+    flex-wrap: wrap;
+    gap: 20px;
     padding: 20px 250px 20px 250px;
-}
-
-/* Style de chaque carte produit */
-.product-card {
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre douce autour de la carte */
-    overflow: hidden; /* Pour s'assurer que le contenu ne déborde pas */
-    text-align: center;
-    padding: 20px;
-    width: calc(33% - 20px); /* Trois cartes par ligne avec un espacement */
-    box-sizing: border-box; /* Inclut le padding dans la largeur */
-}
-
-.product-skeleton {
-
 }
