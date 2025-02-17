@@ -2,10 +2,11 @@ import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import axios from "axios";
 import "../styles/Global.css"
+import CalculateTtc from "../components/CalculateTTC";
 
-function ProductDetails(props) {
+function ProductDetails() {
     const { id } = useParams();
-    const [produits, setProduits] = useState([]);
+    const [produits, setProduits] = useState([null]);
 
     useEffect(() => {
         const fetchProduits = async () => {
@@ -22,10 +23,10 @@ function ProductDetails(props) {
 
     return (
         <div className="product-details">
-                {/*image*/}
+                <img className="product-img" src={`/cafe/${produits.Chemin_img}`} alt="image de produit vendu par notre enseigne"/>
                 <h2>{produits.Nom_produit}</h2>
                 <p>Description: {produits.Description}</p>
-                <p>Prix: {produits.Prix_HT} €</p>
+                <p><CalculateTtc produit={produits} /></p>
                 <p>Stock: {produits.Stock}</p>
         </div>
     );

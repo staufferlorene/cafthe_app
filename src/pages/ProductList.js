@@ -13,7 +13,7 @@ function ProductList(props) {
     useEffect(() => {
     const fetchProduits = async () => {
         try {
-            const response = await axios.get("http://localhost:3000/api/produit", {
+            const response = await axios.get("http://localhost:3000/api/montantttc/produit", {
                 headers: { Authorization: "Bearer " + token },
             });
             setProduits(response.data);
