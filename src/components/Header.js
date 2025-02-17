@@ -1,17 +1,20 @@
 import React, {useContext} from 'react';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {AuthContext} from "../context/AuthContext";
-import navbar from "./Navbar";
 import "../styles/Global.css"
 import "../styles/Header.css"
 
 function Header(props) {
     const { user, isAuthenticated, logout } = useContext(AuthContext);
+    const navigate = useNavigate()
 
     const handleLogout = () => {
         logout();
     };
 
+    function handleMyAcc() {
+        navigate("/my_account")
+    }
 
     return (
         <div className="header-container">
@@ -24,6 +27,7 @@ function Header(props) {
                         <>
                             <span>Bonjour {user.prenom} {user.nom}</span>
                             <button onClick={handleLogout}>Se déconnecter</button>
+                            <button onClick={handleMyAcc}>Mon compte</button>
                         </>
                     ) : (
                         <Link to={`/login`}>Se connecter</Link>

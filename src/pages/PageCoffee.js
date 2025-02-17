@@ -13,7 +13,6 @@ function PageCoffee(props) {
             try {
                 const response = await axios.get("http://localhost:3000/api/categorie/cafe");
                 setCoffee(response.data);
-                console.log(coffee)
             } catch (error){
                 console.error("Erreur de chargement des produits", error);
             } finally {

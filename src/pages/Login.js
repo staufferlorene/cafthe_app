@@ -12,7 +12,6 @@ function Login(props) {
    const [mdp, setMdp] = useState("");
    const [errorMsg, setErrorMsg] = useState("");
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrorMsg("");

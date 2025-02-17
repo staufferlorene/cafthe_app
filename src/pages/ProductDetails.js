@@ -26,8 +26,8 @@ function ProductDetails() {
                 <img className="product-img" src={`/cafe/${produits.Chemin_img}`} alt="image de produit vendu par notre enseigne"/>
                 <h2>{produits.Nom_produit}</h2>
                 <p>Description: {produits.Description}</p>
-                <p><CalculateTtc produit={produits} /></p>
                 <p>Stock: {produits.Stock}</p>
+                <p><CalculateTtc produit={produits} /></p>
         </div>
     );
 }

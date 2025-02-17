@@ -8,6 +8,7 @@ import PageTea from "./pages/PageTea";
 import PageAccessory from "./pages/PageAccessory";
 import { AuthProvider } from "./context/AuthContext";
 import Login from "./pages/Login";
+import MyAccount from "./pages/MyAccount";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
                     <Route path={"categorie/cafe"} element={<PageCoffee />}/>
                     <Route path={"categorie/the"} element={<PageTea />}/>
                     <Route path={"categorie/accessoire"} element={<PageAccessory />}/>
+                    <Route path={"/my_account"} element={<MyAccount />}/>
                 </Route>
             </Routes>
         </Router>
