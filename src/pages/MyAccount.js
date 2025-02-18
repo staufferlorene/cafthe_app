@@ -10,6 +10,12 @@ function MyAccount(props) {
     const [actifTel, setActifTel] = useState(false);
     const [actifMail, setActifMail] = useState(false);
     const [actifAdresse, setActifAdresse] = useState(false);
+    const [actifPassword, setActifPassword] = useState(false);
+
+    // Nouveaux états pour le mot de passe
+    const [ancienMdp, setAncienMdp] = useState("");
+    const [nouveauMdp, setNouveauMdp] = useState("");
+    const [confirmerMdp, setConfirmerMdp] = useState("");
 
     useEffect(() => {
         const fetchProduits = async () => {
@@ -26,6 +32,7 @@ function MyAccount(props) {
         }
     }, [user.id]);
 
+    // Màj la donnée modifiée
     function handleClick(modif) {
         if (modif === "tel") {
             setActifTel(!actifTel)
@@ -40,8 +47,6 @@ function MyAccount(props) {
             setActifMail(false)
             setActifAdresse(!actifAdresse)
         }
-
-
     }
 
     const handleSubmit = async (e) => {
@@ -82,22 +87,53 @@ function MyAccount(props) {
         }
     };
 
+    // Modification du mot de passe
+    const handlePassword = async (e) => {
+        e.preventDefault();
+
+        if (nouveauMdp !== confirmerMdp) {
+            alert("Les mots de passe ne correspondent pas !");
+            return;
+        }
+
+        try {
+            const response = await axios.put(`http://localhost:3000/api/client/update/mdp/${user.id}`, {
+                last_mdp: ancienMdp,
+                new_mdp: nouveauMdp
+            });
+
+            if (response.status === 200) {
+                alert('Mot de passe mis à jour avec succès');
+                // Réinitialiser les champs après validation
+                setAncienMdp("");
+                setNouveauMdp("");
+                setConfirmerMdp("");
+            }
+        } catch (error) {
+            console.error("Erreur lors de la mise à jour du mot de passe", error);
+            alert("Erreur lors de la mise à jour du mot de passe");
+        }
+    };
+
     return (
         <div>
             <h2>Vos informations</h2>
             <p>Nom : {infos.Nom_client}</p>
             <p>Prénom : {infos.Prenom_client}</p>
 
-            <p>Téléphone : {infos.Telephone_client} <button onClick={() => handleClick ("tel")}>Modifier</button></p>
+            <p>Téléphone : {infos.Telephone_client}
+                <button onClick={() => handleClick("tel")}>Modifier</button>
+            </p>
             {actifTel ? (
                 <form onSubmit={handleSubmit}>
                     <label>Nouveau numéro de téléphone : </label>
                     <input
-                        type="test"
+                        type="tel"
                         name="tel"
-                        placeholder={infos.Telephone_client}
                         onChange=
-                            {(e) => {setTel(e.target.value)}}
+                            {(e) => {
+                                setTel(e.target.value)
+                            }}
                         required
                     />
 
@@ -105,16 +141,19 @@ function MyAccount(props) {
                 </form>
             ) : ""}
 
-            <p>Adresse : {infos.Adresse_client} <button onClick={() => handleClick ("adresse")}>Modifier</button></p>
+            <p>Adresse : {infos.Adresse_client}
+                <button onClick={() => handleClick("adresse")}>Modifier</button>
+            </p>
             {actifAdresse ? (
                 <form onSubmit={handleSubmit}>
                     <label>Nouvelle adresse : </label>
                     <input
                         type="text"
                         name="adresse"
-                        placeholder={infos.Adresse_client}
                         onChange=
-                            {(e) => {setAdresse(e.target.value)}}
+                            {(e) => {
+                                setAdresse(e.target.value)
+                            }}
                         required
                     />
 
@@ -122,26 +161,62 @@ function MyAccount(props) {
                 </form>
             ) : ""}
 
-            <p>Mail : {infos.Mail_client} <button onClick={() => handleClick ("mail")}>Modifier</button></p>
+            <p>Mail : {infos.Mail_client}
+                <button onClick={() => handleClick("mail")}>Modifier</button>
+            </p>
             {actifMail ? (
                 <form onSubmit={handleSubmit}>
                     <label>Nouveau mail : </label>
-                        <input
-                            type="email"
-                            name="email"
-                            placeholder={infos.Mail_client}
-                            onChange=
-                                {(e) => {setMail(e.target.value)}}
-                            required
-                        />
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="exemple@mail.com"
+                        onChange=
+                            {(e) => {
+                                setMail(e.target.value)
+                            }}
+                        required
+                    />
 
                     <button type="submit">Valider</button>
                 </form>
             ) : ""}
 
-            <p>Mdp ?</p>
+            <p>Mot de passe : ****** <button onClick={() => setActifPassword(!actifPassword)}>Modifier</button></p>
+            {actifPassword && (
+                <form onSubmit={handlePassword}>
+                    <label>Ancien mot de passe : </label>
+                    <input
+                        type="password"
+                        name="ancienMdp"
+                        value={ancienMdp}
+                        onChange={(e) => setAncienMdp(e.target.value)}
+                        required
+                    />
+
+                    <label>Nouveau mot de passe : </label>
+                    <input
+                        type="password"
+                        name="nouveauMdp"
+                        value={nouveauMdp}
+                        onChange={(e) => setNouveauMdp(e.target.value)}
+                        required
+                    />
+
+                    <label>Confirmer le nouveau mot de passe : </label>
+                    <input
+                        type="password"
+                        name="confirmerMdp"
+                        value={confirmerMdp}
+                        onChange={(e) => setConfirmerMdp(e.target.value)}
+                        required
+                    />
+
+                    <button type="submit">Valider</button>
+                </form>
+            )}
         </div>
     );
-}
+    }
 
-export default MyAccount;
+    export default MyAccount;
