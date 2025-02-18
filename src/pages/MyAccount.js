@@ -1,104 +1,143 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import {useParams} from "react-router-dom";
 
 function MyAccount(props) {
     const user = JSON.parse(localStorage.getItem("user"));
-    const { id } = useParams();
-    const [client, setClient] = useState([null]);
-    const [adresse, setAdresse] = useState(false)
-    const [mail, setMail] = useState(false);
+    const [infos, setInfos] = useState({});
+    const [tel, setTel] = useState("");
+    const [mail, setMail] = useState("");
+    const [adresse, setAdresse] = useState("");
+    const [actifTel, setActifTel] = useState(false);
+    const [actifMail, setActifMail] = useState(false);
+    const [actifAdresse, setActifAdresse] = useState(false);
 
     useEffect(() => {
         const fetchProduits = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/api/client/${id}`);
-                setClient(response.data);
+                const response = await axios.get(`http://localhost:3000/api/client/${user.id}`);
+                setInfos(response.data);
             } catch (error){
                 console.error("Erreur de chargement", error);
             }
         };
 
-        void fetchProduits()
+        if (user) {
+            void fetchProduits();
+        }
     }, [user.id]);
 
+    function handleClick(modif) {
+        if (modif === "tel") {
+            setActifTel(!actifTel)
+            setActifMail(false)
+            setActifAdresse(false)
+        } else if (modif === "mail") {
+            setActifTel(false)
+            setActifMail(!actifMail)
+            setActifAdresse(false)
+        } else if (modif === "adresse") {
+            setActifTel(false)
+            setActifMail(false)
+            setActifAdresse(!actifAdresse)
+        }
 
 
-
-
-
-    function ModifMail() {
-        setMail(!mail)
     }
 
-    function ModifAdresse() {
-        setAdresse(!adresse)
-    }
-
-
-
-
-    const HandleModifMail = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const newMail = e.target.email.value;  // Récupère la valeur du champ email
-        console.log("New mail saisi :", newMail)
+        const new_tel = tel || infos.Telephone_client;
+        const new_email = mail || infos.Mail_client;
+        const new_adresse = adresse || infos.Adresse_client;
 
         try {
-            console.log("Envoi de la requête PUT");
-            const response = await axios.put(`http://localhost:3000/api/client/update/${id}`, {
-                Mail_client: newMail,
-                Telephone_client: undefined,
-                Adresse_client: undefined
+            const response = await axios.put(`http://localhost:3000/api/client/update/${user.id}`, {
+                Telephone_client: new_tel,
+                Mail_client: new_email,
+                Adresse_client: new_adresse
             });
 
             if (response.status === 200) {
-                console.log("Réponse du serveur : ", response);
-                alert("Votre adresse e-mail a été mise à jour avec succès.");
-                setMail(false);  // Ferme le formulaire de modification
+                setInfos({
+                    ...infos,
+                    Telephone_client: new_tel,
+                    Mail_client: new_email,
+                    Adresse_client: new_adresse
+                });
+
+                // Réinitialiser les champs de saisie après validation
+                setTel("");
+                setMail("");
+                setAdresse("");
+
+                // Fermer les formulaires de modification
+                setActifTel(false);
+                setActifMail(false);
+                setActifAdresse(false);
             }
+
         } catch (error) {
-            console.error("Erreur de mise à jour de l'email", error);
+            console.error("Erreur de mise à jour", error);
         }
     };
-
-
-
-
-
-
-
-
-
 
     return (
         <div>
             <h2>Vos informations</h2>
-            <p>Nom : {user.nom}</p>
-            <p>Prénom : {user.prenom}</p>
+            <p>Nom : {infos.Nom_client}</p>
+            <p>Prénom : {infos.Prenom_client}</p>
 
-            <p>Adresse : {user.adresse} <button onClick={ModifAdresse}>Modifier</button></p>
-            {adresse ? <form><label><input type="text" placeholder="Votre nouvelle adresse"/></label> <button>Valider</button></form> : "" }
+            <p>Téléphone : {infos.Telephone_client} <button onClick={() => handleClick ("tel")}>Modifier</button></p>
+            {actifTel ? (
+                <form onSubmit={handleSubmit}>
+                    <label>Nouveau numéro de téléphone : </label>
+                    <input
+                        type="test"
+                        name="tel"
+                        placeholder={infos.Telephone_client}
+                        onChange=
+                            {(e) => {setTel(e.target.value)}}
+                        required
+                    />
 
-            <p>Mail : {user.email} <button onClick={ModifMail}>Modifier</button></p>
-            {mail ? (
-                <form onSubmit={HandleModifMail}>
-                    <label>
-                        Nouveau mail:
-                        <input
-                            type="email"
-                            name="email"  // Ajoutez un attribut name pour pouvoir récupérer la valeur
-                            placeholder="Votre nouveau mail"
-                            required  // Optionnel : pour rendre le champ obligatoire
-                        />
-                    </label>
                     <button type="submit">Valider</button>
                 </form>
             ) : ""}
 
+            <p>Adresse : {infos.Adresse_client} <button onClick={() => handleClick ("adresse")}>Modifier</button></p>
+            {actifAdresse ? (
+                <form onSubmit={handleSubmit}>
+                    <label>Nouvelle adresse : </label>
+                    <input
+                        type="text"
+                        name="adresse"
+                        placeholder={infos.Adresse_client}
+                        onChange=
+                            {(e) => {setAdresse(e.target.value)}}
+                        required
+                    />
 
+                    <button type="submit">Valider</button>
+                </form>
+            ) : ""}
 
-            {/*{mail ? (<form><label><input type="email" placeholder="Votre nouveau mail"/></label> <button onSubmit={HandleModifMail}>Valider</button></form>) : "" }*/}
+            <p>Mail : {infos.Mail_client} <button onClick={() => handleClick ("mail")}>Modifier</button></p>
+            {actifMail ? (
+                <form onSubmit={handleSubmit}>
+                    <label>Nouveau mail : </label>
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder={infos.Mail_client}
+                            onChange=
+                                {(e) => {setMail(e.target.value)}}
+                            required
+                        />
+
+                    <button type="submit">Valider</button>
+                </form>
+            ) : ""}
 
             <p>Mdp ?</p>
         </div>
