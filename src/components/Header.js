@@ -16,6 +16,10 @@ function Header(props) {
         navigate("/my_account")
     }
 
+    function handleMyOrder() {
+        navigate("/my_order")
+    }
+
     return (
         <div className="header-container">
             <ul>
@@ -26,8 +30,9 @@ function Header(props) {
                     {isAuthenticated ? (
                         <>
                             <span>Bonjour {user.prenom} {user.nom}</span>
-                            <button onClick={handleLogout}>Se déconnecter</button>
                             <button onClick={handleMyAcc}>Mon compte</button>
+                            <button onClick={handleMyOrder}>Mes commandes</button>
+                            <button onClick={handleLogout}>Se déconnecter</button>
                         </>
                     ) : (
                         <Link to={`/login`}>Se connecter</Link>

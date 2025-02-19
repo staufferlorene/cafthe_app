@@ -1,3 +1,4 @@
+// fonction pour calculer le montant TTC
 function CalculateTtc({produit}) {
 
     return (<>
