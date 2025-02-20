@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 function MyOrder(props) {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -27,8 +28,10 @@ function MyOrder(props) {
                 <div>
                 <p>Date commande : {order.Date_commande}</p>
                 <p>Statut commande : {order.Statut_commande}</p>
-                <p>Montant commande : {order.Montant_commande_TTC}</p>
+                <p>Montant commande : {order.Montant_commande_TTC} €</p>
+                <Link to={`/commande/detail/${order.Id_commande}`} className="details-btn">
                     Voir détail
+                </Link>
 </div>
             ))}
 </div>

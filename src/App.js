@@ -10,6 +10,7 @@ import { AuthProvider } from "./context/AuthContext";
 import Login from "./pages/Login";
 import MyAccount from "./pages/MyAccount";
 import MyOrder from "./pages/MyOrder";
+import OrderDetails from "./pages/OrderDetails";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
                     <Route path={"categorie/accessoire"} element={<PageAccessory />}/>
                     <Route path={"/my_account"} element={<MyAccount />}/>
                     <Route path={"/my_order"} element={<MyOrder />}/>
+                    <Route path={"/commande/detail/:id"} element={<OrderDetails />}/>
                 </Route>
             </Routes>
         </Router>
