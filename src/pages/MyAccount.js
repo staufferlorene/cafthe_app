@@ -12,7 +12,7 @@ function MyAccount(props) {
     const [actifAdresse, setActifAdresse] = useState(false);
     const [actifPassword, setActifPassword] = useState(false);
 
-    // Nouveaux états pour le mot de passe
+    // États pour le mot de passe
     const [ancienMdp, setAncienMdp] = useState("");
     const [nouveauMdp, setNouveauMdp] = useState("");
     const [confirmerMdp, setConfirmerMdp] = useState("");
@@ -92,7 +92,7 @@ function MyAccount(props) {
         e.preventDefault();
 
         if (nouveauMdp !== confirmerMdp) {
-            alert("Les mots de passe ne correspondent pas !");
+            alert("Les mots de passe sont différents !");
             return;
         }
 

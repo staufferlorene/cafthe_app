@@ -3,6 +3,7 @@ import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import "../styles/Global.css"
+import Inscription from "../components/Inscription";
 
 function Login(props) {
     const { login } = useContext(AuthContext); // accès à la fonction login venant du contexte
@@ -47,6 +48,7 @@ function Login(props) {
     };
 
     return (
+        <>
         <div>
             <h2>Connexion</h2>
                 <form onSubmit={handleSubmit}>
@@ -61,7 +63,7 @@ function Login(props) {
                             />
                         </li>
                         <li>
-                            <label>Saisir votre mdp :</label>
+                            <label>Saisir votre mot de passe :</label>
                             <input
                                 type="password"
                                 value={mdp}
@@ -76,6 +78,11 @@ function Login(props) {
                 <button type="submit">Se connecter</button>
             </form>
         </div>
+
+        <div>
+            <Inscription />
+        </div>
+        </>
     );
 }
 
