@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import axios from "axios";
 
 function Inscription(props) {
@@ -16,6 +16,14 @@ function Inscription(props) {
         const handleSubmit = async (e) => {
             e.preventDefault();
 
+            if (mdp_one !== mdp_two) {
+                alert("Les mots de passes sont différents");
+                // vider les champs des mots de passes
+                setMdp_one("");
+                setMdp_two("");
+                return;
+            }
+
             try {
                 const response = await axios.post("http://localhost:3000/api/client/register",
                 {
@@ -23,12 +31,11 @@ function Inscription(props) {
                         Prenom_client: prenom,
                         Telephone_client: tel,
                         Mail_client: mail,
-                        Mdp_client: mdp_two,
+                        Mdp_client: mdp_one,
                         Date_inscription: date,
                         Adresse_client: adresse,
                     });
 
-                    if (mdp_one === mdp_two) {
                         alert("Inscription effectuée avec succès");
                         // Réinitialiser les champs après validation
                         setNom("");
@@ -38,9 +45,6 @@ function Inscription(props) {
                         setMdp_one("");
                         setMdp_two("");
                         setAdresse("");
-                    }
-
-                    console.log(response)
 
         } catch (error) {
             console.error("Erreur lors de l'inscription", error);
