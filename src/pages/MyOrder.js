@@ -24,9 +24,9 @@ function MyOrder(props) {
         return (
             <div>
                 <p>Vous n'avez pas passée de commande</p>
-                {/*<Link to={`/commande/client/${user.id}`} className={"details-btn"}>*/}
-                {/*    Retour aux commandes*/}
-                {/*</Link>*/}
+                <Link to={`/`} className={"details-btn"}>
+                    Retour
+                </Link>
             </div>
         )
     }

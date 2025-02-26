@@ -24,9 +24,10 @@ function OrderDetails(props) {
         return (
             <div>
                 <p>La commande est vide ou inexistante</p>
-                {/*<Link to={`/commande/client/${user.id}`} className={"details-btn"}>*/}
-                {/*    Retour aux commandes*/}
-                {/*</Link>*/}
+
+                <Link to={`/`} className={"details-btn"}>
+                    Retour
+                </Link>
             </div>
         )
     }
@@ -51,9 +52,9 @@ function OrderDetails(props) {
                     <p>Statut de la commande : {orders[0].Statut_commande}</p>
                 </div>
 
-                {/*<Link to={`/commande/client/${user.id}`} className={"details-btn"}>*/}
-                {/*    Retour aux commandes*/}
-                {/*</Link>*/}
+                <Link to={`/commande/client/${user.id}`} className={"details-btn"}>
+                    Retour aux commandes
+                </Link>
             </div>
         </div>
     );

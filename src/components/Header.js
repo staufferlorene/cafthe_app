@@ -17,7 +17,7 @@ function Header(props) {
     }
 
     function handleMyOrder() {
-        navigate("/my_order")
+        navigate("/commande/client/:id")
     }
 
     return (
