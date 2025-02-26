@@ -20,7 +20,16 @@ function MyOrder(props) {
         void fetchOrders()
     }, []);
 
-    console.log(orders)
+    if (!orders || orders.length === 0) {
+        return (
+            <div>
+                <p>Vous n'avez pas passée de commande</p>
+                {/*<Link to={`/commande/client/${user.id}`} className={"details-btn"}>*/}
+                {/*    Retour aux commandes*/}
+                {/*</Link>*/}
+            </div>
+        )
+    }
 
     return (
         <div>
