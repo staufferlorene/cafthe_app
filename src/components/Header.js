@@ -1,12 +1,16 @@
 import React, {useContext} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import {AuthContext} from "../context/AuthContext";
+import {CartContext, useCart} from "../context/CartContext";
 import "../styles/Global.css"
 import "../styles/Header.css"
 
+
 function Header(props) {
     const { user, isAuthenticated, logout } = useContext(AuthContext);
-    const navigate = useNavigate()
+    const { items} = useContext(CartContext);
+    const navigate = useNavigate();
+    //const { cartItems } = useCart();
 
     const handleLogout = () => {
         logout();
@@ -19,6 +23,17 @@ function Header(props) {
     function handleMyOrder() {
         navigate("/commande/client/:id")
     }
+
+    function handleCart() {
+        if (isAuthenticated) {
+            navigate("/cart");
+        } else {
+            alert("Veuillez vous connecter pour accéder à votre panier");
+            navigate("/login");
+        }
+    }
+
+
 
     return (
         <div className="header-container">
@@ -37,8 +52,8 @@ function Header(props) {
                     ) : (
                         <Link to={`/login`}>Se connecter</Link>
                     )}
+                    <button onClick={handleCart}>Panier {items.length > 0 ? `(${items.length})` : ""}</button>
                 </li>
-                <li>Panier</li>
             </ul>
         </div>
     );

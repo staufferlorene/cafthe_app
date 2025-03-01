@@ -23,7 +23,7 @@ function ProductDetails() {
 
     return (
         <div className="product-details">
-                <img className="product-img" src={`/cafe/${produits.Chemin_img}`} alt="image de produit vendu par notre enseigne"/>
+                <img className="product-img" src={`/${produits.Chemin_img}`} alt="image de produit vendu par notre enseigne"/>
                 <h2>{produits.Nom_produit}</h2>
                 <p>Description: {produits.Description}</p>
                 <p>Stock: {produits.Stock}</p>
