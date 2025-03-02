@@ -27,7 +27,7 @@ function ProductDetails() {
                 <h2>{produits.Nom_produit}</h2>
                 <p>Description: {produits.Description}</p>
                 <p>Stock: {produits.Stock}</p>
-                <p><CalculateTtc produit={produits} /></p>
+                <p>Prix TTC: <CalculateTtc produit={produits} /></p>
         </div>
     );
 }

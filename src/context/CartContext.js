@@ -3,8 +3,8 @@ import { createContext, useReducer, useEffect } from "react";
 export const CartContext = createContext({
     items: [],
     addItemToCart: () => {},
-    //removeItemFromCart: () => {},
-    //clearCart: () => {},
+    updateItemQuantity: () => {},
+    removeItemFromCart: () => {},
 });
 
 const loadCartFromLocalStorage = () => {
@@ -15,188 +15,100 @@ const loadCartFromLocalStorage = () => {
 const cartReducer = (state, action) => {
     let updatedItems;
 
-       if (action.type === "AJOUTER_DANS_PANIER") {
-        updatedItems = [...state.items];
+        if (action.type === "AJOUTER_DANS_PANIER") {
 
-        const existingItemIndex = updatedItems.findIndex(
-            (item) => item.id === action.payload.Id_produit
-        );
+            //////// POUR L'AJOUT DANS LE PANIER ////////
+            // Mettre à jour la quantité si le produit existe déjà dans le panier
+            updatedItems = state.items.map(item =>
+                item.id === action.payload.Id_produit
+                    ? { ...item, quantity: item.quantity + 1 }
+                    : item
+            );
 
-        if (existingItemIndex !== -1) {
-            updatedItems[existingItemIndex].quantity += 1;
-        } else {
-            updatedItems.push({
-                id: action.payload.Id_produit,
-                name: action.payload.Nom_produit,
-                quantity: 1,
+            // Ajouter le produit s'il n'est pas déjà dans le panier
+            if (!state.items.some(item => item.id === action.payload.Id_produit)) {
+                updatedItems.push({
+                    id: action.payload.Id_produit,
+                    name: action.payload.Nom_produit,
+                    amount: action.payload.Prix_HT,
+                    Tva_categorie: action.payload.Tva_categorie,
+                    quantity: 1,
             });
         }
     }
 
-    // if (action.type === "SUPPRIMER_DU_PANIER") {
-    //     updatedItems = state.items.filter(item => item.id !== action.payload.Id_produit);
-    // }
-    //
-    // if (action.type === "VIDER_PANIER") {
-    //     updatedItems = [];
-    // }
+    if (action.type === "ACTUALISER_QUANTITE_PRODUIT") {
+        //////// POUR LA MAJ DE LA QUANTITE DANS LE PANIER ////////
+        // Màj la quantité du produit voulu
+        updatedItems = state.items
+            .map(item =>
+                item.id === action.payload.Id_produit
+                    ? { ...item, quantity: item.quantity + action.payload.quantity }
+                    : item
+            )
 
-    // Met à jour le localStorage
-    localStorage.setItem("cart", JSON.stringify(updatedItems));
+            // Supprimer le produit quand la quantité = 0
+            .filter(item => item.quantity > 0);
 
-    return { items: updatedItems };
+        return { items: updatedItems };
+    }
+
+
+    if (action.type === "SUPPRIMER_DU_PANIER") {
+            updatedItems = state.items.filter(item => item.id !== action.payload.Id_produit);
+        }
+
+        // Màj du localStorage
+        localStorage.setItem("cart", JSON.stringify(updatedItems));
+
+        return { items: updatedItems };
 };
 
 export const CartContextProvider = ({ children }) => {
     const [cartState, cartDispatch] = useReducer(cartReducer, { items: loadCartFromLocalStorage() });
 
+    // Sauvegarde du panier dans localStorage
     useEffect(() => {
         localStorage.setItem("cart", JSON.stringify(cartState.items));
     }, [cartState.items]);
 
-    const addItemToCart = (Id_produit, Nom_produit) => {
+    /////////////////////////////////////////////////////////////////////////
+    // Actions pour modifier le panier (ajout, màj quantité, suppression) //
+    //////////////////////////////////////////////////////////////////////
+
+    const addItemToCart = (Id_produit, Nom_produit, Prix_HT, Tva_categorie) => {
         cartDispatch({
             type: "AJOUTER_DANS_PANIER",
-            payload: { Id_produit, Nom_produit },
+            payload: { Id_produit, Nom_produit, Prix_HT, Tva_categorie },
         });
     };
 
-    // const removeItemFromCart = (Id_produit) => {
-    //     cartDispatch({
-    //         type: "SUPPRIMER_DU_PANIER",
-    //         payload: { Id_produit },
-    //     });
-    // };
-    //
-    // const clearCart = () => {
-    //     cartDispatch({ type: "VIDER_PANIER" });
-    // };
+    const updateItemQuantity = (Id_produit, quantity) => {
+        cartDispatch({
+            type: "ACTUALISER_QUANTITE_PRODUIT",
+            payload: { Id_produit, quantity }
+        })
+    };
 
+    const removeItemFromCart = (Id_produit) => {
+        cartDispatch({
+            type: "SUPPRIMER_DU_PANIER",
+            payload: { Id_produit },
+        });
+    };
+
+    // Déclaration context pour le passer aux composants enfants
     const initialValue = {
         items: cartState.items,
         addItemToCart,
-        //removeItemFromCart,
-        //clearCart,
+        updateItemQuantity,
+        removeItemFromCart,
     };
 
+    // Passage du context aux composants enfants
     return (
         <CartContext.Provider value={initialValue}>
             {children}
         </CartContext.Provider>
     );
 };
-
-
-
-
-
-
-//////////////////////////////////////////
-//////////////////////////////////////////
-//                 CODE 2
-//////////////////////////////////////////
-//////////////////////////////////////////
-
-// import {createContext, useReducer} from "react";
-//
-// export const CartContext = createContext({
-//     // items = élément dans panier
-//     items: [],
-//     addItemToCart: () => {},
-// });
-//
-// const cartReducer = (state, action) => {
-//      if (action.type === "AJOUTER_DANS_PANIER") {
-//          const updateShoppingCartItems = [...state.items];
-//
-//          // Vérifier si l'élément en question existe
-//
-//          const existingElementIndex = updateShoppingCartItems.findIndex(
-//              (cartItem) => cartItem.id === action.payload.Id_produit
-//          );
-//
-//          const existingElement = updateShoppingCartItems[existingElementIndex]
-//
-//          if(existingElement){
-//              // Au cas ou l'élement est déjà présent dans le panier
-//          } else {
-//              const produit = DUMMY_PRODUCTS.find((produit) => produit.Id_produit === action.payload.Id_produit);
-//
-//              if (produit){
-//                  updateShoppingCartItems.push({
-//                      id: produit.Id_produit,
-//                      name: produit.Nom_produit,
-//                      quantity: 1,
-//                  })
-//              }
-//          }
-//
-//         return {
-//              items: updateShoppingCartItems,
-//         }
-//     }
-//
-//     return state;
-// };
-//
-// export const CartContextProvider = ({children}) => {
-//     const [cartState, cartDispatch] = useReducer(cartReducer, {
-//        items: [],
-//     });
-//
-//     //Fonction d'ajout dans le panier
-//     const handleAddProductToCart = (Id_produit) => {
-//         cartDispatch({
-//             type: "AJOUTER_DANS_PANIER",
-//             payload: { Id_produit: Id_produit },
-//         });
-//     };
-//
-//     const initialValue = {
-//         items: cartState.items,
-//         addItemToCart: handleAddProductToCart,
-//     };
-//
-//     return <CartContext.Provider value={initialValue}>
-//         {children}
-//     </CartContext.Provider>
-// };
-
-
-//////////////////////////////////////////
-//////////////////////////////////////////
-//                 CODE 1
-//////////////////////////////////////////
-//////////////////////////////////////////
-
-// import { createContext, useContext, useState } from "react";
-//
-// export const CartContext = createContext();
-//
-// export const CartProvider = ({ children }) => {
-//     const [cartItems, setCartItems] = useState([]);
-//
-//     const addToCart = (item) => {
-//         setCartItems((prevItems) => [...prevItems, item]);
-//     };
-//
-//     const removeFromCart = (itemId) => {
-//         setCartItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
-//     };
-//
-//     const clearCart = () => {
-//         setCartItems([]);
-//     };
-//
-//     return (
-//         <CartContext.Provider
-//             value={{ cartItems, addToCart, removeFromCart, clearCart }}
-//         >
-//             {children}
-//         </CartContext.Provider>
-//     );
-// };
-//
-// export const useCart = () => useContext(CartContext);
-//
-// export default CartContext;

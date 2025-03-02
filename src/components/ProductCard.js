@@ -9,14 +9,14 @@ function ProductCard({produit}) {
     const { addItemToCart } = useContext(CartContext);
 
     const handleAddToCart = () => {
-        addItemToCart(produit.Id_produit, produit.Nom_produit);
+        addItemToCart(produit.Id_produit, produit.Nom_produit, produit.Prix_HT, produit.Tva_categorie);
     };
 
     return (
         <div className="product-card">
             <img className="product-img" src={`/${produit.Chemin_img}`} alt="image de produit vendu par notre enseigne"/>
             <h3>{produit.Nom_produit}</h3>
-            <p><CalculateTtc produit={produit} /></p>
+            <p>Prix TTC: <CalculateTtc produit={produit} /></p>
                 <Link to={`/produit/${produit.Id_produit}`} className="details-btn">
                     Voir détails
                 </Link>
