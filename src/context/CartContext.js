@@ -31,6 +31,7 @@ const cartReducer = (state, action) => {
                     id: action.payload.Id_produit,
                     name: action.payload.Nom_produit,
                     amount: action.payload.Prix_HT,
+                    amount_TTC: action.payload.Prix_TTC,
                     Tva_categorie: action.payload.Tva_categorie,
                     quantity: 1,
             });
@@ -76,10 +77,10 @@ export const CartContextProvider = ({ children }) => {
     // Actions pour modifier le panier (ajout, màj quantité, suppression) //
     //////////////////////////////////////////////////////////////////////
 
-    const addItemToCart = (Id_produit, Nom_produit, Prix_HT, Tva_categorie) => {
+    const addItemToCart = (Id_produit, Nom_produit, Prix_HT, Prix_TTC, Tva_categorie) => {
         cartDispatch({
             type: "AJOUTER_DANS_PANIER",
-            payload: { Id_produit, Nom_produit, Prix_HT, Tva_categorie },
+            payload: { Id_produit, Nom_produit, Prix_HT, Prix_TTC, Tva_categorie },
         });
     };
 

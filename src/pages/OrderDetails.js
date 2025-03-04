@@ -46,7 +46,7 @@ function OrderDetails(props) {
                     </div>)
                 )}
                 <div className={"command"}>
-                    <p>Date commande : {orders[0].Date_commande}</p>
+                    <p>Date commande : {new Date(orders[0].Date_commande).toLocaleDateString('fr-FR')}</p>
                     {/*on utilise premier objet présent dans orders[] car la date et le total sont les mêmes partout*/}
                     <p>Montant total commande TTC : {orders[0].Montant_commande_TTC} €</p>
                     <p>Statut de la commande : {orders[0].Statut_commande}</p>

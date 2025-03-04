@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import axios from "axios";
 import "../styles/Global.css"
-import CalculateTtc from "../components/CalculateTTC";
 
 function ProductDetails() {
     const { id } = useParams();
@@ -27,7 +26,7 @@ function ProductDetails() {
                 <h2>{produits.Nom_produit}</h2>
                 <p>Description: {produits.Description}</p>
                 <p>Stock: {produits.Stock}</p>
-                <p>Prix TTC: <CalculateTtc produit={produits} /></p>
+                <p>Prix TTC: {produits.Prix_TTC}</p>
         </div>
     );
 }

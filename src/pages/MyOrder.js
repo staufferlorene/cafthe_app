@@ -35,7 +35,7 @@ function MyOrder(props) {
         <div>
             {orders.map((order) => (
                 <div>
-                <p>Date commande : {order.Date_commande}</p>
+                <p>Date commande : {new Date(order.Date_commande).toLocaleDateString('fr-FR')}</p>
                 <p>Statut commande : {order.Statut_commande}</p>
                 <p>Montant commande : {order.Montant_commande_TTC} €</p>
                 <Link to={`/commande/detail/${order.Id_commande}`} className="details-btn">
