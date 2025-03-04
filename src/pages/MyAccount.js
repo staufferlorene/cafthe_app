@@ -17,6 +17,10 @@ function MyAccount(props) {
     const [nouveauMdp, setNouveauMdp] = useState("");
     const [confirmerMdp, setConfirmerMdp] = useState("");
 
+    // Pour la gestion des messages
+    const [succesMsg, setSuccesMsg] = useState("");
+    const [errorMsg, setErrorMsg] = useState("");
+
     useEffect(() => {
         const fetchProduits = async () => {
             try {
@@ -92,7 +96,7 @@ function MyAccount(props) {
         e.preventDefault();
 
         if (nouveauMdp !== confirmerMdp) {
-            alert("Les mots de passe sont différents !");
+            setErrorMsg("Les mots de passe sont différents !");
             return;
         }
 
@@ -103,7 +107,7 @@ function MyAccount(props) {
             });
 
             if (response.status === 200) {
-                alert('Mot de passe mis à jour avec succès');
+                setSuccesMsg('Mot de passe mis à jour avec succès');
                 // Réinitialiser les champs après validation
                 setAncienMdp("");
                 setNouveauMdp("");
@@ -111,7 +115,7 @@ function MyAccount(props) {
             }
         } catch (error) {
             console.error("Erreur lors de la mise à jour du mot de passe", error);
-            alert("Erreur lors de la mise à jour du mot de passe");
+            setErrorMsg("Erreur lors de la mise à jour du mot de passe");
         }
     };
 
@@ -211,6 +215,14 @@ function MyAccount(props) {
                         onChange={(e) => setConfirmerMdp(e.target.value)}
                         required
                     />
+
+                    {succesMsg && (
+                        <div className="msgSucces">{succesMsg}</div>
+                    )}
+
+                    {errorMsg && (
+                        <div className="msgError">{errorMsg}</div>
+                    )}
 
                     <button type="submit">Valider</button>
                 </form>

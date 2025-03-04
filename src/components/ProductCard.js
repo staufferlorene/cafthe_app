@@ -9,6 +9,12 @@ function ProductCard({produit}) {
     const { addItemToCart } = useContext(CartContext);
 
     const handleAddToCart = () => {
+        //
+        // REFAIRE LE CALCUL ICI ET JE REUTILISE LA VARIABLE DECLAREE POUR ADDITEMTOCART
+        // const prixTTC = {(produit.Prix_HT * (1 + (produit.Tva_categorie / 100))).toFixed(2)} €;
+        //
+        // addItemToCart(produit.Id_produit, produit.Nom_produit, prixTTC, produit.Tva_categorie);
+
         addItemToCart(produit.Id_produit, produit.Nom_produit, produit.Prix_HT, produit.Tva_categorie);
     };
 

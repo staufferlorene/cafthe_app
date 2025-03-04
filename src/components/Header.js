@@ -24,17 +24,6 @@ function Header(props) {
         navigate("/commande/client/:id")
     }
 
-    function handleCart() {
-        if (isAuthenticated) {
-            navigate("/cart");
-        } else {
-            alert("Veuillez vous connecter pour accéder à votre panier");
-            navigate("/login");
-        }
-    }
-
-
-
     return (
         <div className="header-container">
             <ul>
@@ -52,7 +41,7 @@ function Header(props) {
                     ) : (
                         <Link to={`/login`}>Se connecter</Link>
                     )}
-                    <button onClick={handleCart}>Panier {items.length > 0 ? `(${items.length})` : ""}</button>
+                    <button><Link to={`/cart`}>Panier {items.length > 0 ? `(${items.length})` : ""}</Link></button>
                 </li>
             </ul>
         </div>

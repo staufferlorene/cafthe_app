@@ -13,6 +13,7 @@ import MyOrder from "./pages/MyOrder";
 import OrderDetails from "./pages/OrderDetails";
 import {CartContextProvider, CartProvider} from "./context/CartContext";
 import Cart from "./pages/Cart";
+import DeliveryMethod from "./pages/DeliveryMethod";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
                         <Route path={"/commande/client/:id"} element={<MyOrder />}/>
                         <Route path={"/commande/detail/:id"} element={<OrderDetails />}/>
                         <Route path={"/cart"} element={<Cart />}/>
+                        <Route path={"/delivery_method"} element={<DeliveryMethod />}/>
                     </Route>
                 </Routes>
             </Router>

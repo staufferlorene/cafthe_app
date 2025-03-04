@@ -1,13 +1,31 @@
 import React, { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import CalculateTtc from "../components/CalculateTTC";
+import {useNavigate} from "react-router-dom";
 
 function Cart() {
     const { items, updateItemQuantity, removeItemFromCart } = useContext(CartContext);
+    const navigate = useNavigate();
+
+    // déclarer usestate pour stocker produit avec détails + appeler fonction
+
+    // const test = CalculateTtc(items);
+    // console.log(test)
+
 
     // Si je garde totalAmount il faut revoir le calcul pour ajouter la tva mais /!\pas à chaque tour
     // Je ne peux pas déclarer une constante pour le prix unitaire et l'appeler à la place de totalAmount car "product.xx" n'est pas connu en dehors du return
-    const totalAmount = items.reduce((acc, item)=> (acc+item.amount * item.Tva_categorie) * item.quantity, 0);
+    const totalAmount = items.reduce((acc, item)=> (acc+item.amount * item.quantity), 0);
+
+    function handleDeliveryMethod() {
+        navigate("/delivery_method")
+    }
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+        console.error("Token manquant, impossible de charger les produits.");
+        return <div>Veuillez vous connecter pour accéder à votre panier.</div>;
+    }
 
     return (
         <div>
@@ -34,10 +52,12 @@ function Cart() {
 
             )}
 
-            {
-                items.length > 0 && <p>Total TTC: {totalAmount.toFixed(2)} €</p>
-            }
-
+            {items.length > 0 && (
+                <div>
+                    <p>Total TTC: {totalAmount.toFixed(2)} €</p>
+                    <button onClick={handleDeliveryMethod}>Choisir la livraison</button>
+                </div>
+            )}
         </div>
     );
 }

@@ -12,12 +12,16 @@ function Inscription(props) {
     const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
     const [adresse, setAdresse] = useState("");
 
+    // Pour la gestion des messages
+    const [succesMsg, setSuccesMsg] = useState("");
+    const [errorMsg, setErrorMsg] = useState("");
+
 
         const handleSubmit = async (e) => {
             e.preventDefault();
 
             if (mdp_one !== mdp_two) {
-                alert("Les mots de passes sont différents");
+                setErrorMsg("Les mots de passes sont différents");
                 // vider les champs des mots de passes
                 setMdp_one("");
                 setMdp_two("");
@@ -36,7 +40,7 @@ function Inscription(props) {
                         Adresse_client: adresse,
                     });
 
-                        alert("Inscription effectuée avec succès");
+                        setSuccesMsg("Inscription effectuée avec succès");
                         // Réinitialiser les champs après validation
                         setNom("");
                         setPrenom("");
@@ -48,7 +52,7 @@ function Inscription(props) {
 
         } catch (error) {
             console.error("Erreur lors de l'inscription", error);
-            alert("Erreur lors de l'inscription")
+                setErrorMsg("Erreur lors de l'inscription")
         }
     };
 
@@ -120,6 +124,15 @@ function Inscription(props) {
                         />
                     </li>
                 </ul>
+
+                {succesMsg && (
+                    <div className="msgSucces">{succesMsg}</div>
+                )}
+
+                {errorMsg && (
+                    <div className="msgError">{errorMsg}</div>
+                )}
+
                 <button type="submit">S'inscrire</button>
             </form>
         </div>
