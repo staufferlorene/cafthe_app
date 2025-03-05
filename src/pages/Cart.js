@@ -13,7 +13,7 @@ function Cart() {
         return <div>Veuillez vous connecter pour accéder à votre panier.</div>;
     }
 
-    // Calcul montant TTC
+    // Calcul montant total TTC
     const totalAmount = items.reduce((acc, item)=> (acc+item.amount_TTC * item.quantity), 0);
 
     function handleDeliveryMethod() {
@@ -27,22 +27,28 @@ function Cart() {
                 <p>Votre panier est vide.</p>
             ) : (
                 <ul>
-                    {items.map((product) => (
-                        <li key={product.id}>
-                            <div>
-                                <p>{product.name}</p>
-                                <p>Prix unitaire: {product.amount_TTC} €</p>
-                            </div>
-                            <div>
-                                <button onClick={() => updateItemQuantity(product.id, -1)}>-</button>
-                                <span>{product.quantity}</span>
-                                <button onClick={() => updateItemQuantity(product.id, 1)}>+</button>
-                            </div>
-                            <div><button onClick={() => removeItemFromCart(product.id)}>Supprimer</button></div>
-                        </li>
-                    ))}
+                    {items.map((product) => {
+                        // Calcul TTC pour chaque produit
+                        const unityTTC = product.amount_TTC * product.quantity;
+                        return (
+                            <li key={product.id}>
+                                <div>
+                                    <p>{product.name}</p>
+                                    <p>Prix unitaire: {product.amount_TTC} €</p>
+                                    <p>Prix TTC: {unityTTC.toFixed(2)} €</p>
+                                </div>
+                                <div>
+                                    <button onClick={() => updateItemQuantity(product.id, -1)}>-</button>
+                                    <span>{product.quantity}</span>
+                                    <button onClick={() => updateItemQuantity(product.id, 1)}>+</button>
+                                </div>
+                                <div>
+                                    <button onClick={() => removeItemFromCart(product.id)}>Supprimer</button>
+                                </div>
+                            </li>
+                        );
+                    })}
                 </ul>
-
             )}
 
             {items.length > 0 && (

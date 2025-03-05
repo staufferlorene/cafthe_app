@@ -39,7 +39,7 @@ function Header(props) {
                             <button onClick={handleLogout}>Se déconnecter</button>
                         </>
                     ) : (
-                        <Link to={`/login`}>Se connecter</Link>
+                        <button><Link to={`/login`}>Se connecter</Link></button>
                     )}
                     <button><Link to={`/cart`}>Panier {items.length > 0 ? `(${items.length})` : ""}</Link></button>
                 </li>
