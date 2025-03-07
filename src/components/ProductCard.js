@@ -12,14 +12,15 @@ function ProductCard({produit}) {
     };
 
     return (
-        <div className="product-card">
+        <div className={`product-card product-card-${produit.Id_categorie}`}>
             <img className="product-img" src={`/${produit.Chemin_img}`} alt="image de produit vendu par notre enseigne"/>
             <h3>{produit.Nom_produit}</h3>
             <p>Prix TTC: {produit.Prix_TTC}</p>
-                <Link to={`/produit/${produit.Id_produit}`} className="details-btn">
+            <button><Link to={`/produit/${produit.Id_produit}`} className="details-btn">
                     Voir détails
-                </Link>
-                <button className="" onClick={() => handleAddToCart(produit.Id_produit)}>
+                </Link></button>
+            {/*<a><button></button></a>*/}
+                <button className="details-btn" onClick={() => handleAddToCart(produit.Id_produit)}>
                     Ajouter au panier
                 </button>
         </div>

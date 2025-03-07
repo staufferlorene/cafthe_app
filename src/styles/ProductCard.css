@@ -8,10 +8,27 @@
     width: calc(33% - 20px);
     max-width: 300px;
     margin: 10px;
-    background-color: #C8AE7D;
     overflow: hidden;
     box-sizing: border-box;
 }
+
+/* background en fonction de la catégorie du produit */
+
+/*thé*/
+.product-card-1 {
+    background-color: #D0C3A1;
+}
+
+/*café*/
+.product-card-2 {
+    background-color: #C8AE7D;
+}
+
+/*accessoire*/
+.product-card-3 {
+    background-color: #AEAEAE;
+}
+
 
 /* Effet au survol de la carte */
 .product-card:hover {
