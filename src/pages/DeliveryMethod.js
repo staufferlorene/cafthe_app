@@ -6,18 +6,23 @@ function DeliveryMethod(props) {
 
     const user = JSON.parse(localStorage.getItem("user"));
     const navigate = useNavigate();
-    const [delivery , setDelivery] = useState()
     const [errorMsg , setErrorMsg] = useState()
 
+    // pour stocker le choix du mode de livraison
+    const [delivery , setDelivery] = useState()
+
+    // fonction englobant tout le formulaire
     function handleSummary(e) {
         e.preventDefault();
         if (delivery === "home" || delivery === "store") {
-            navigate("/summary", { state: {delivery}}) // utiliser l'état pour le faire passer sur la page summary grâce à navigate
+            // utiliser useState pour faire passer le choix sur la page summary grâce à navigate
+            navigate("/summary", {state: {delivery}})
         } else {
             setErrorMsg("Veuillez faire un choix");
         }
     }
 
+    // fonction ciblant le bouton radio
     function handleDeliveryChange(e) {
         setDelivery(e.target.value);
     }
@@ -52,4 +57,3 @@ function DeliveryMethod(props) {
 }
 
 export default DeliveryMethod;
-

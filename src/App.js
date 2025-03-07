@@ -15,6 +15,7 @@ import {CartContextProvider, CartProvider} from "./context/CartContext";
 import Cart from "./pages/Cart";
 import DeliveryMethod from "./pages/DeliveryMethod";
 import Summary from "./pages/Summary";
+import Confirm from "./pages/Confirm";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
                         <Route path={"/cart"} element={<Cart />}/>
                         <Route path={"/delivery_method"} element={<DeliveryMethod />}/>
                         <Route path={"/summary"} element={<Summary />}/>
+                        <Route path={"/confirm"} element={<Confirm />}/>
                     </Route>
                 </Routes>
             </Router>

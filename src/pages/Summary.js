@@ -1,34 +1,26 @@
-import React, {useEffect, useState} from 'react';
-import axios from "axios";
-import {Link, useLocation} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
+import {useState} from "react";
 
 function Summary(props) {
     const user = JSON.parse(localStorage.getItem("user"));
     const cart = JSON.parse(localStorage.getItem("cart"));
-    console.log(cart)
-    const [infos, setInfos] = useState({});
-
-    const location = useLocation();
-    const delivery = location.state?.delivery;  // On récupère la valeur de delivery passé via state
-
+    const navigate = useNavigate();
 
     // Calcul montant total TTC
     const totalAmount = cart.reduce((acc, cart)=> (acc+cart.amount_TTC * cart.quantity), 0);
 
-    // useEffect(() => {
-    //     const fetchProduits = async () => {
-    //         try {
-    //             const response = await axios.get(`http://localhost:3000/api/client/${user.id}`);
-    //             setInfos(response.data);
-    //         } catch (error) {
-    //             console.error("Erreur de chargement", error);
-    //         }
-    //     };
-    //
-    //     if (user) {
-    //         void fetchProduits();
-    //     }
-    // }, [user.id]);
+    // Pour accéder à la donnée stockée dans location (la méthode de livraison choisie)
+    const location = useLocation();
+    // On récupère la valeur de delivery passé via useState
+    const delivery = location.state?.delivery;
+    // pour stocker le choix du mode de paiement
+    const [methodPayment, setMethodPayment] = useState(null);
+
+    function handlePayment(method) {
+        setMethodPayment(method)
+        // utiliser useState pour faire passer les choix livraison + paiement sur la page confirm grâce à navigate
+        navigate("/confirm", {state: {delivery, methodPayment: method}})
+    }
 
     return (
         <div>
@@ -62,24 +54,24 @@ function Summary(props) {
             <div><p>Total TTC: {totalAmount.toFixed(2)} €</p></div>
             )}
 
-            {/*/!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\*/}
-            {/*/!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\*/}
-            {/*/!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\*/}
-            {/*/!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\ /!\*/}
-            {/* affichage mode de livraison en condition aussi, seulement si formulaire soumis avec "id" en paramètre*/}
-
             <h3>Votre mode de livraison</h3>
 
-            <p>{delivery ? (delivery === "home" ? `À votre domicile situé ${user.adresse}` : "Au magasin situé 1 Rue Cafthe, 41000 Blois") : "Non sélectionné"}</p>
+            <p>{delivery ? (delivery === "home" ? `À votre domicile situé ${user.adresse}` : "Au magasin situé 1 Rue Cafthe, 41000 Blois") : null}</p>
 
 
             <Link to={`/delivery_method`} className={"details-btn"}>
                 Retour
             </Link>
+
+            <button onClick={() => handlePayment("online")}>Payer en ligne</button>
+
+            {/*Afficher le bouton uniquement si la livraison est en magasin*/}
+            {delivery === "store" && (
+                <button onClick={() => handlePayment("inStore")}>Payer en magasin</button>
+            )}
+
         </div>
     )
 };
-
-
 
 export default Summary;
