@@ -10,6 +10,7 @@ function Confirm(props) {
     // On récupère la valeur de delivery passé via useState
     const methodPayment = location.state?.methodPayment;
 
+    //affichage conditionnel des messages
     function msgUn () {
         if ((delivery === "store" || delivery === "home") && methodPayment === "online") {
             return "Votre paiement a bien été pris en compte et votre commande est maintenant en cours de traitement."

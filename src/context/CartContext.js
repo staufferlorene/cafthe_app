@@ -5,6 +5,7 @@ export const CartContext = createContext({
     addItemToCart: () => {},
     updateItemQuantity: () => {},
     removeItemFromCart: () => {},
+    clearCart: () => {},
 });
 
 const loadCartFromLocalStorage = () => {
@@ -48,7 +49,8 @@ const cartReducer = (state, action) => {
                     : item
             )
 
-            // Supprimer le produit quand la quantité = 0
+            // Supprimer le produit quand la quantité = 0 (ne pas mettre signe = mais > sinon même lorsqu'on clic sur +
+            // le produit est supprimé
             .filter(item => item.quantity > 0);
 
         return { items: updatedItems };
@@ -58,6 +60,10 @@ const cartReducer = (state, action) => {
     if (action.type === "SUPPRIMER_DU_PANIER") {
             updatedItems = state.items.filter(item => item.id !== action.payload.Id_produit);
         }
+
+    if (action.type === "VIDER_PANIER") {
+        updatedItems = [];
+    }
 
         // Màj du localStorage
         localStorage.setItem("cart", JSON.stringify(updatedItems));
@@ -74,7 +80,7 @@ export const CartContextProvider = ({ children }) => {
     }, [cartState.items]);
 
     /////////////////////////////////////////////////////////////////////////
-    // Actions pour modifier le panier (ajout, màj quantité, suppression) //
+    // Actions pour modifier le panier (ajout, màj quantité, suppression, vider panier) //
     //////////////////////////////////////////////////////////////////////
 
     const addItemToCart = (Id_produit, Nom_produit, Prix_HT, Prix_TTC, Tva_categorie) => {
@@ -98,12 +104,19 @@ export const CartContextProvider = ({ children }) => {
         });
     };
 
+    const clearCart = () => {
+        cartDispatch({
+            type: "VIDER_PANIER",
+        });
+    };
+
     // Déclaration context pour le passer aux composants enfants
     const initialValue = {
         items: cartState.items,
         addItemToCart,
         updateItemQuantity,
         removeItemFromCart,
+        clearCart,
     };
 
     // Passage du context aux composants enfants

@@ -1,10 +1,12 @@
 import {Link, useLocation, useNavigate} from "react-router-dom";
-import {useState} from "react";
+import {useContext, useState} from "react";
+import {CartContext} from "../context/CartContext";
 
 function Summary(props) {
     const user = JSON.parse(localStorage.getItem("user"));
     const cart = JSON.parse(localStorage.getItem("cart"));
     const navigate = useNavigate();
+    const { clearCart } = useContext(CartContext);
 
     // Calcul montant total TTC
     const totalAmount = cart.reduce((acc, cart)=> (acc+cart.amount_TTC * cart.quantity), 0);
@@ -20,6 +22,7 @@ function Summary(props) {
         setMethodPayment(method)
         // utiliser useState pour faire passer les choix livraison + paiement sur la page confirm grâce à navigate
         navigate("/confirm", {state: {delivery, methodPayment: method}})
+        clearCart();
     }
 
     return (
@@ -59,9 +62,9 @@ function Summary(props) {
             <p>{delivery ? (delivery === "home" ? `À votre domicile situé ${user.adresse}` : "Au magasin situé 1 Rue Cafthe, 41000 Blois") : null}</p>
 
 
-            <Link to={`/delivery_method`} className={"details-btn"}>
+            <button><Link to={`/delivery_method`} className={"details-btn"}>
                 Retour
-            </Link>
+            </Link></button>
 
             <button onClick={() => handlePayment("online")}>Payer en ligne</button>
 
