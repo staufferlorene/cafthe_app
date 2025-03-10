@@ -1,5 +1,5 @@
 import {Link, useLocation, useNavigate} from "react-router-dom";
-import {useContext, useState} from "react";
+import React, {useContext, useState} from "react";
 import {CartContext} from "../context/CartContext";
 
 function Summary(props) {
@@ -34,23 +34,42 @@ function Summary(props) {
                 <p>Votre panier est vide.</p>
             ) : (
 
-                <ul>
-                    {cart.map((product) => {
-                        // Calcul TTC pour chaque produit
-                        const unityTTC = product.amount_TTC * product.quantity;
-                        return (
-                            <li key={product.id}>
-                                <div>
-                                    <p>{product.name}</p>
-                                    <p>{product.quantity}</p>
-                                    <p>Prix unitaire: {product.amount_TTC} €</p>
-                                    <p>Prix TTC: {unityTTC.toFixed(2)} €</p>
-                                </div>
-                            </li>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Produit</th>
+                        <th>Quantité</th>
+                        <th>Prix unitaire</th>
+                        <th>Prix TTC</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {cart.map((product) => {
+                            // Calcul TTC pour chaque produit
+                            const unityTTC = product.amount_TTC * product.quantity;
 
-                        );
-                    })}
-                </ul>
+                            return (
+                                <tr key={product.id}>
+                                    <td>{product.name}</td>
+
+                                        {/* Afficher la notion de "gramme" pour produit vendu en vrac */}
+                                        {product.type_conditionnement === "vrac" && (
+                                        <td>{product.quantity}g</td>)
+                                        }
+
+                                        {/* si unitaire n'afficher que la quantité */}
+                                        {product.type_conditionnement === "unitaire" && (
+                                            <td>{product.quantity}</td>)
+                                        }
+
+                                    <td>{product.amount_TTC} €</td>
+                                    <td>{unityTTC.toFixed(2)} €</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
             )}
 
             {cart.length > 0 && (
