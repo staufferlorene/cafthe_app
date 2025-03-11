@@ -13,6 +13,24 @@
     font-weight: bold;
 }
 
+/* Style du titre */
+.product-card h3 {
+    margin-bottom: 10px;
+}
+
+/* Style du prix */
+.product-card p {
+    margin-bottom: 15px;
+    color: black;
+    font-weight: normal;
+}
+
+.product-img {
+    width: 200px;
+    border-radius: 8px ;
+}
+
+
 /* background en fonction de la catégorie du produit */
 
 /*thé*/
@@ -33,25 +51,21 @@
     color: #141414;
 }
 
+
 /* Effet au survol de la carte */
 .product-card:hover {
     transform: translateY(-5px); /* Animation au survol */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); /* Ombre plus marquée */
 }
 
-/* Style du titre */
-.product-card h3 {
-    margin-bottom: 10px;
+.product-card-1:hover {
+    background-color: #BDB193;
 }
 
-/* Style du prix */
-.product-card p {
-    margin-bottom: 15px;
-    color: black;
-    font-weight: normal;
+.product-card-2:hover {
+    background-color: #B29B6E;
 }
 
-.product-img {
-    width: 200px;
-    border-radius: 8px ;
+.product-card-3:hover {
+    background-color: #9E9E9E;
 }
