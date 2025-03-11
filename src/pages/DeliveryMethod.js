@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Link, useNavigate} from "react-router-dom";
-import '../styles/DeliveryMethod.css'
+import '../styles/DeliveryMethod.css';
+import "../styles/Global.css";
 
 function DeliveryMethod(props) {
 
@@ -43,10 +44,10 @@ function DeliveryMethod(props) {
                     <p>{user.adresse}</p>
                 </div>
                 <div>
-                    <Link to={`/cart`} className={"details-btn"}>
+                    <button><Link to={`/cart`} className={"details-btn"}>
                         Retour
-                    </Link>
-                    <button type="submit">Confirmer</button>
+                    </Link></button>
+                    <button className="details-btn" type="submit">Confirmer</button>
                 </div>
                 {errorMsg && (
                     <div className="msgError">{errorMsg}</div>

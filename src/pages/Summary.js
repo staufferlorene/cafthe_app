@@ -1,6 +1,7 @@
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import React, {useContext, useState} from "react";
 import {CartContext} from "../context/CartContext";
+import "../styles/Global.css";
 
 function Summary(props) {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -20,6 +21,11 @@ function Summary(props) {
 
     function handlePayment(method) {
         setMethodPayment(method)
+
+
+
+
+
         // utiliser useState pour faire passer les choix livraison + paiement sur la page confirm grâce à navigate
         navigate("/confirm", {state: {delivery, methodPayment: method}})
         clearCart();

@@ -1,8 +1,8 @@
 import React, {useContext} from 'react';
 import {Link} from "react-router-dom";
 import {AuthContext} from "../context/AuthContext";
-import "../styles/Global.css"
-import "../styles/Navbar.css"
+import "../styles/Global.css";
+import "../styles/Navbar.css";
 
 function Navbar(props) {
 

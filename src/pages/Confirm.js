@@ -1,5 +1,6 @@
 import React from 'react';
 import {useLocation} from "react-router-dom";
+import "../styles/Global.css";
 
 function Confirm(props) {
 
@@ -7,7 +8,7 @@ function Confirm(props) {
     const location = useLocation();
     // On récupère la valeur de delivery passé via useState
     const delivery = location.state?.delivery;
-    // On récupère la valeur de delivery passé via useState
+    // On récupère la valeur de methodPayment passé via useState
     const methodPayment = location.state?.methodPayment;
 
     //affichage conditionnel des messages

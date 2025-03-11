@@ -3,6 +3,8 @@ import { CartContext } from "../context/CartContext";
 import {useNavigate} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTrash} from "@fortawesome/free-solid-svg-icons";
+import "../styles/Global.css";
+
 
 function Cart() {
     const {items, updateItemQuantity, removeItemFromCart } = useContext(CartContext);

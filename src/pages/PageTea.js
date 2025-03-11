@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import Skeleton from "react-loading-skeleton";
 import ProductCard from "../components/ProductCard";
-import "../styles/Global.css"
+import "../styles/Global.css";
 
 function PageTea(props) {
     const [tea, setTea] = useState([]);
@@ -11,7 +11,7 @@ function PageTea(props) {
     useEffect(() => {
         const fetchProduits = async () => {
             try {
-                const response = await axios.get("http://localhost:3000/api/categorie/the");
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/categorie/the`);
                 setTea(response.data);
             } catch (error){
                 console.error("Erreur de chargement des produits", error);

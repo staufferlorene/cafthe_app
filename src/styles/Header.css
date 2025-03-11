@@ -23,8 +23,9 @@
 
 /* Style des liens */
 .header a {
-    color: black;
+    color: #FBFBFB;
     font-weight: bold;
+    font-size: 12px;
 }
 
  /*Style des boutons*/
@@ -40,4 +41,10 @@
 
 .header button:hover {
     background-color: #46341F; /* Couleur au survol */
+}
+
+/* Style des icônes */
+.header-icon {
+    color: #FBFBFB;
+    font-size: 22px;
 }

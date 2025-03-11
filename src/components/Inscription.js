@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import axios from "axios";
+import "../styles/Global.css";
+
 
 function Inscription(props) {
 
@@ -29,7 +31,7 @@ function Inscription(props) {
             }
 
             try {
-                const response = await axios.post("http://localhost:3000/api/client/register",
+                const response = await axios.post(`${process.env.REACT_APP_API_URL}/client/register`,
                 {
                         Nom_client: nom,
                         Prenom_client: prenom,

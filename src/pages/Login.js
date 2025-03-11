@@ -2,7 +2,7 @@ import React, {useContext, useState} from 'react';
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import "../styles/Global.css"
+import "../styles/Global.css";
 import Inscription from "../components/Inscription";
 
 function Login(props) {
@@ -18,7 +18,7 @@ function Login(props) {
         setErrorMsg("");
 
         try {
-            const response = await axios.post("http://localhost:3000/api/login",
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/login`,
                 {
                     "Mail_client": email,
                     "Mdp_client": mdp,

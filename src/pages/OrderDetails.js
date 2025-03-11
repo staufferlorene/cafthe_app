@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Link, useParams} from "react-router-dom";
 import axios from "axios";
+import "../styles/Global.css";
 
 function OrderDetails(props) {
     const { id } = useParams();
@@ -10,7 +11,7 @@ function OrderDetails(props) {
     useEffect(() => {
         const fetchProduits = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/api/commande/detail/${id}`);
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/commande/detail/${id}`);
                 setOrders(response.data);
             } catch (error){
                 console.error("Erreur de chargement du détail de la commande", error);
@@ -46,6 +47,7 @@ function OrderDetails(props) {
                     </div>)
                 )}
                 <div className={"command"}>
+                    {/*Afficher la date au format français*/}
                     <p>Date commande : {new Date(orders[0].Date_commande).toLocaleDateString('fr-FR')}</p>
                     {/*on utilise premier objet présent dans orders[] car la date et le total sont les mêmes partout*/}
                     <p>Montant total commande TTC : {orders[0].Montant_commande_TTC} €</p>

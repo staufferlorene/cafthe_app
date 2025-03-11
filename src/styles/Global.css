@@ -48,6 +48,51 @@ table {
     border-spacing: 0;
 }
 
+/* Import de la police sur google font */
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Poetsen+One&display=swap');
+
+
+/***********************************************************
+************************************************************
+STYLE DIV
+************************************************************
+***********************************************************/
+.flex {
+    display: flex;
+}
+
+h1,
+h2,
+h3,
+p,
+a {
+    font-family: "Oswald";
+}
+
+/* Style du bouton */
+.details-btn {
+    background-color: #65451F;
+    color: #FBFBFB;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-align: center;
+    font-family: "Oswald";
+    font-weight: 400;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.details-btn:hover {
+    background-color: #46341F;
+}
+
+/***********************************************************
+************************************************************
+LIENS
+************************************************************
+***********************************************************/
 
 /* Style des liens */
  a {

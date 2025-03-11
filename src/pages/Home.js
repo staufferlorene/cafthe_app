@@ -1,6 +1,6 @@
 import React from 'react';
 import ProductList from "./ProductList";
-import "../styles/Global.css"
+import "../styles/Global.css";
 
 function Home(props) {
     return (

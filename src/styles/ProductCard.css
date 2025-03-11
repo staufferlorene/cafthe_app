@@ -8,8 +8,9 @@
     width: calc(33% - 20px);
     max-width: 300px;
     margin: 10px;
-    overflow: hidden;
     box-sizing: border-box;
+    /*cible uniquement le h3 puisque le p a son CSS (évite d'écrire plus de code en faisant ainsi)*/
+    font-weight: bold;
 }
 
 /* background en fonction de la catégorie du produit */
@@ -17,23 +18,25 @@
 /*thé*/
 .product-card-1 {
     background-color: #D0C3A1;
+    color: #03300B;
 }
 
 /*café*/
 .product-card-2 {
     background-color: #C8AE7D;
+    color: #461B0A;
 }
 
 /*accessoire*/
 .product-card-3 {
     background-color: #AEAEAE;
+    color: #141414;
 }
-
 
 /* Effet au survol de la carte */
 .product-card:hover {
     transform: translateY(-5px); /* Animation au survol */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Ombre plus marquée */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); /* Ombre plus marquée */
 }
 
 /* Style du titre */
@@ -44,20 +47,8 @@
 /* Style du prix */
 .product-card p {
     margin-bottom: 15px;
-}
-
- /* Style du bouton */
-.details-btn {
-    background-color: #65451F;
-    color: #FBFBFB;
-    text-decoration: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    text-align: center;
-}
-
-.details-btn:hover {
-    background-color: #46341F;
+    color: black;
+    font-weight: normal;
 }
 
 .product-img {
