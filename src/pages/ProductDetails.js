@@ -28,9 +28,9 @@ function ProductDetails() {
     };
 
     return (
-            <div className={`flex product-details product-details-${produits.Id_categorie}`}>
-                <div className="test">
-                    <img className="product-img-details" src={`/${produits.Chemin_img}`} alt="image de produit vendu par notre enseigne"/>
+            <div className={`product-details product-details-${produits.Id_categorie}`}>
+                <div className="product-img-details">
+                    <img className="img-details" src={`/${produits.Chemin_img}`} alt="image de produit vendu par notre enseigne"/>
                 </div>
                 <div className="product-text-details">
                     <h2 className="text-title">{produits.Nom_produit}</h2>

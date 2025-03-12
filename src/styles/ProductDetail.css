@@ -1,20 +1,35 @@
 /* Style général de la carte produit */
 .product-details {
+    display: flex;
     margin: 0 auto;
     max-width: 1200px;
     border-radius: 8px;
-    height: 440px;
-    gap: 20px;
+    height: 380px;
 }
 
 .product-img-details {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 40%;
+    justify-content: center;
+    align-items: center;
+    object-fit: cover;
+}
+
+.img-details {
     width: 280px;
     border-radius: 8px;
 }
 
-. product-text-details {
+.product-text-details {
+    flex-direction: column;
+    height: 75%;
+    display: flex;
     justify-content: space-evenly;
     align-content: center;
+    align-items: start;
+    align-self: center;
 }
 
 /* background en fonction de la catégorie du produit */
@@ -46,17 +61,48 @@
     text-decoration: underline;
 }
 
-.text-description {
-    font-size: 22px;
+.text-description,
+.text-stock {
+    font-size: 20px;
     font-weight: 300;
 }
 
-.text-stock {
-    font-size: 22px;
+.text-price {
+    font-size: 20px;
     font-weight: 400;
 }
 
-.text-price {
-    font-size: 24px;
-    font-weight: 400;
+/*MEDIA QUERIES*/
+
+@media (max-width: 700px) {
+
+    /* passage en colonne et ajustement placement */
+    .product-details {
+       flex-direction: column;
+        height: auto;
+    }
+
+    .product-img-details {
+        width: 100%;
+        justify-content: flex-start;
+        margin: 20px 0;
+    }
+
+    .product-text-details {
+        width: 80%;
+        align-items: center;
+    }
+
+    /* aération du contenu */
+
+    .text-title,
+    .text-description,
+    .text-stock,
+    .text-price {
+        margin-bottom: 10px;
+    }
+
+    .details-btn {
+        margin-bottom: 20px;
+    }
 }
