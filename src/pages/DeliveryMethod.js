@@ -29,24 +29,25 @@ function DeliveryMethod(props) {
     }
 
     return (
-        <div>
+        <div className="deliveryMethod-container">
             <h2>Choix du mode de livraison</h2>
             <form onSubmit={handleSummary}>
-                <p>Veuillez choisir votre livraison :</p>
+                <p className="deliveryMethod-mb">Veuillez choisir votre livraison :</p>
                 <div className="radio-container">
                     <input type="radio" id="deliveryChoice1" name="delivery" value="store" onChange={handleDeliveryChange} />
-                    <label htmlFor="deliveryChoice1">Au magasin</label>
+                    <label className="deliveryMethod-label" htmlFor="deliveryChoice1">Au magasin</label>
                     <p>1 Rue Cafthe, 41000 Blois</p>
                 </div>
                 <div className="radio-container">
                     <input type="radio" id="deliveryChoice2" name="delivery" value="home" onChange={handleDeliveryChange} />
-                    <label htmlFor="deliveryChoice2">A mon domicile</label>
+                    <label className="deliveryMethod-label" htmlFor="deliveryChoice2">A mon domicile</label>
                     <p>{user.adresse}</p>
                 </div>
                 <div>
-                    <button><Link to={`/cart`} className={"details-btn"}>
+                    <button className="details-btn gap" onClick={() => navigate("/cart")}>
                         Retour
-                    </Link></button>
+                    </button>
+
                     <button className="details-btn" type="submit">Confirmer</button>
                 </div>
                 {errorMsg && (

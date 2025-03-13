@@ -4,6 +4,7 @@ import {useNavigate} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTrash} from "@fortawesome/free-solid-svg-icons";
 import "../styles/Global.css";
+import "../styles/Cart.css";
 
 
 function Cart() {
@@ -26,12 +27,12 @@ function Cart() {
     }
 
     return (
-        <div>
+        <div className="cart-container">
             <h2>Votre Panier</h2>
             {items.length === 0 ? (
                 <p>Votre panier est vide.</p>
             ) : (
-                <table>
+                <table className="cart-table">
                     <thead>
                         <tr>
                             <th>Produit</th>
@@ -77,7 +78,7 @@ function Cart() {
 
                                 {/* Afficher quantité pour produit vendu à l'unité */}
                                 {product.type_conditionnement === "unitaire" && (
-                                <td>
+                                <td className="quantity-container">
                                     <button onClick={() => updateItemQuantity(product.id, -1)}>-</button>
                                     <span>{product.quantity}</span>
                                     <button onClick={() => updateItemQuantity(product.id, 1)}>+</button>
@@ -87,7 +88,7 @@ function Cart() {
                                 <td>{product.amount_TTC} €</td>
                                 <td>{unityTTC.toFixed(2)} €</td>
                                 <td>
-                                    <button onClick={() => removeItemFromCart(product.id)} aria-label="Supprimer"><FontAwesomeIcon icon={faTrash} /></button>
+                                    <button className="delete-btn" onClick={() => removeItemFromCart(product.id)} aria-label="Supprimer"><FontAwesomeIcon icon={faTrash} /></button>
                                 </td>
                             </tr>
                             );
@@ -98,7 +99,7 @@ function Cart() {
 
             {items.length > 0 && (
                 <div>
-                    <p>Total TTC: {totalAmount.toFixed(2)} €</p>
+                    <p className="cart-total">Total TTC: {totalAmount.toFixed(2)} €</p>
                     <button className="details-btn" onClick={handleDeliveryMethod}>Choisir la livraison</button>
                 </div>
             )}

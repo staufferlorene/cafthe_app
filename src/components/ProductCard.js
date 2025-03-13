@@ -14,19 +14,15 @@ function ProductCard({produit}) {
 
     return (
         <div className={`product-card product-card-${produit.Id_categorie}`}>
-            <img className="product-img" src={`/${produit.Chemin_img}`} alt="image de produit vendu par notre enseigne"/>
+            <img className="product-img" src={`/${produit.Chemin_img}`} alt=""/>
             <h3>{produit.Nom_produit}</h3>
             <p>{produit.Prix_TTC} €</p>
-            <button className="details-btn" onClick={() => navigate(`/produit/${produit.Id_produit}`)}>
-                    Voir détails
+            <button className="details-btn gap" onClick={() => navigate(`/produit/${produit.Id_produit}`)}>
+                Voir détails
             </button>
-            {/*<button><Link to={`/produit/${produit.Id_produit}`} className="details-btn">*/}
-            {/*        Voir détails*/}
-            {/*    </Link></button>*/}
-            {/*<a><button></button></a>*/}
-                <button className="details-btn" onClick={() => handleAddToCart(produit.Id_produit)}>
-                    Ajouter au panier
-                </button>
+            <button className="details-btn" onClick={() => handleAddToCart(produit.Id_produit)}>
+                Ajouter au panier
+            </button>
         </div>
     );}
 

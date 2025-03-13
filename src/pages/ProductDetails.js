@@ -37,7 +37,7 @@ function ProductDetails() {
                     <p className="text-description">Description: {produits.Description}</p>
                     <p className="text-stock">En stock: {produits.Stock}</p>
                     <p className="text-price">{produits.Prix_TTC} €</p>
-                    <button className="details-btn" onClick={() => handleAddToCart(produits.Id_produit)}>
+                    <button className="details-btn mb" onClick={() => handleAddToCart(produits.Id_produit)}>
                         Ajouter au panier
                     </button>
                 </div>

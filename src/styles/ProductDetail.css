@@ -31,6 +31,9 @@
     align-items: start;
     align-self: center;
 }
+p {
+    color: #010101;
+}
 
 /* background en fonction de la catégorie du produit */
 /*thé*/
@@ -102,7 +105,7 @@
         margin-bottom: 10px;
     }
 
-    .details-btn {
+    .mb {
         margin-bottom: 20px;
     }
 }
