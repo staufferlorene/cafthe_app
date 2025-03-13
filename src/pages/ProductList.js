@@ -1,20 +1,20 @@
-import React, {use, useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import ProductCard from "../components/ProductCard";
 import Skeleton from "react-loading-skeleton";
-import "../styles/Global.css"
+import "../styles/Global.css";
 import "react-loading-skeleton/dist/skeleton.css";
-import "../styles/ProductList.css"
+import "../styles/ProductList.css";
 
-function ProductList(props) {
+function ProductList({search}) {
     const [produits, setProduits] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
     const fetchProduits = async () => {
         try {
-            const response = await axios.get("http://localhost:3000/api/montantttc/produit", {
-                headers: { Authorization: "Bearer " + token },
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/montantttc/produit`, {
+                // headers: { Authorization: "Bearer " + token },
             });
             setProduits(response.data);
         } catch (error) {
@@ -25,12 +25,6 @@ function ProductList(props) {
     };
         void fetchProduits()
     }, []);
-
-    const token = localStorage.getItem("token");
-    if (!token) {
-        console.error("Token manquant, impossible de charger les produits.");
-        return <div>Veuillez vous connecter pour voir les produits.</div>;
-    }
 
     if (isLoading){
         return (
@@ -53,15 +47,29 @@ function ProductList(props) {
         );
     }
 
+    const filtrerProduits = produits.filter((produit) => {
+        return produit.Nom_produit.toLowerCase().includes(search.toLowerCase());
+    });
+
+
     return (
+
         <div>
             <h3>Liste des produits</h3>
-                <div className="product-list">
-                    {produits.map((produit) => (
+
+            <div className="product-list">
+                {filtrerProduits.length > 0 ? (
+                    filtrerProduits.map((produit) => (
                         <ProductCard key={produit.Id_produit} produit={produit} />
-                    ))}
-                </div>
+                    ))
+                ) : (
+                    <p>Aucun produit trouvé pour cette recherche.</p>
+                )}
+            </div>
         </div>
+
+
+
     );
 }
 

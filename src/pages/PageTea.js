@@ -4,7 +4,7 @@ import Skeleton from "react-loading-skeleton";
 import ProductCard from "../components/ProductCard";
 import "../styles/Global.css";
 
-function PageTea(props) {
+function PageTea({search}) {
     const [tea, setTea] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -22,6 +22,10 @@ function PageTea(props) {
 
         void fetchProduits()
     }, []);
+
+    const filtrerProduits = tea.filter((produit) => {
+        return produit.Nom_produit.toLowerCase().includes(search.toLowerCase());
+    });
 
     if (isLoading){
         return (
@@ -48,9 +52,13 @@ function PageTea(props) {
         <div>
             <h3>Liste des thés</h3>
             <div className="product-list">
-                {tea.map((produit) => (
-                    <ProductCard key={produit.Id_produit} produit={produit} />
-                ))}
+                {filtrerProduits.length > 0 ? (
+                    filtrerProduits.map((produit) => (
+                        <ProductCard key={produit.Id_produit} produit={produit} />
+                    ))
+                ) : (
+                    <p>Aucun produit trouvé pour cette recherche.</p>
+                )}
             </div>
         </div>
     );

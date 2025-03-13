@@ -4,7 +4,7 @@ import Skeleton from "react-loading-skeleton";
 import ProductCard from "../components/ProductCard";
 import "../styles/Global.css";
 
-function PageAccessory(props) {
+function PageAccessory({search}) {
     const [accessory, setAccessory] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -22,6 +22,10 @@ function PageAccessory(props) {
 
         void fetchProduits()
     }, []);
+
+    const filtrerProduits = accessory.filter((produit) => {
+        return produit.Nom_produit.toLowerCase().includes(search.toLowerCase());
+    });
 
     if (isLoading){
         return (
@@ -47,10 +51,15 @@ function PageAccessory(props) {
     return (
         <div>
             <h3>Liste des accessoires</h3>
+
             <div className="product-list">
-                {accessory.map((produit) => (
-                    <ProductCard key={produit.Id_produit} produit={produit} />
-                ))}
+                {filtrerProduits.length > 0 ? (
+                    filtrerProduits.map((produit) => (
+                        <ProductCard key={produit.Id_produit} produit={produit} />
+                    ))
+                ) : (
+                    <p>Aucun produit trouvé pour cette recherche.</p>
+                )}
             </div>
         </div>
     );
