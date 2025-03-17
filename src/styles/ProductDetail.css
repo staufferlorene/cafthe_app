@@ -5,6 +5,7 @@
     max-width: 1200px;
     border-radius: 8px;
     height: 380px;
+    gap: 15px;
 }
 
 .product-img-details {
@@ -30,8 +31,9 @@
     align-content: center;
     align-items: start;
     align-self: center;
+    width: 70%;
 }
-p {
+.product-details p {
     color: #010101;
 }
 
@@ -39,13 +41,15 @@ p {
 /*thé*/
 .product-details-1 {
     background-color: #D0C3A1;
-    color: #03300B;
+    color: #0c7c23;
+    /*color: #03300B;*/
 }
 
 /*café*/
 .product-details-2 {
     background-color: #C8AE7D;
-    color: #461B0A;
+    color: #451c0a;
+    /*color: #461B0A;*/
 }
 
 /*accessoire*/

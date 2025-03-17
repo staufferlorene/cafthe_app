@@ -4,6 +4,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
+    margin-bottom: 30px;
 }
 
 .logo {
@@ -11,7 +12,7 @@
     width: 100px;
 }
 
-/* Connexion et panier */
+/* Icônes */
 .header {
     display: flex;
     align-items: center;
@@ -40,11 +41,66 @@
 }
 
 .header button:hover {
-    background-color: #46341F; /* Couleur au survol */
+    background-color: #46341F;
 }
 
 /* Style des icônes */
 .header-icon {
     color: #FBFBFB;
     font-size: 22px;
+}
+
+/* Menu burger */
+.burger-menu {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+@media (max-width: 780px) {
+    .logo {
+        width: 60px;
+    }
+
+    .header-icon {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 520px) {
+    .burger-menu {
+        display: block;
+    }
+
+    .burger-icon {
+        background-color: #65451F;
+        color: #FBFBFB;
+        border: none;
+        padding: 8px 10px;
+        border-radius: 4px;
+
+    }
+
+    .header {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: #65451F;
+        width: 100px;
+        padding: 10px;
+        border-radius: 4px;
+    }
+
+    .header.open {
+        display: flex;
+    }
+
+    .header button {
+        width: 100%;
+        text-align: center;
+        margin-left: 0px;
+    }
 }

@@ -1,7 +1,8 @@
-import {Link, useLocation, useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import React, {useContext, useState} from "react";
 import {CartContext} from "../context/CartContext";
 import "../styles/Global.css";
+import "../styles/Summary.css";
 
 function Summary(props) {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -22,17 +23,13 @@ function Summary(props) {
     function handlePayment(method) {
         setMethodPayment(method)
 
-
-
-
-
         // utiliser useState pour faire passer les choix livraison + paiement sur la page confirm grâce à navigate
         navigate("/confirm", {state: {delivery, methodPayment: method}})
         clearCart();
     }
 
     return (
-        <div>
+        <div className="summary-container">
             <h2>Récapitulatif de votre commande</h2>
             <h3>Votre panier</h3>
 
@@ -40,7 +37,7 @@ function Summary(props) {
                 <p>Votre panier est vide.</p>
             ) : (
 
-                <table>
+                <table className="summary-table">
                     <thead>
                     <tr>
                         <th>Produit</th>
@@ -79,23 +76,23 @@ function Summary(props) {
             )}
 
             {cart.length > 0 && (
-            <div><p>Total TTC: {totalAmount.toFixed(2)} €</p></div>
+            <div><p className="Total-TTC">Total TTC: {totalAmount.toFixed(2)} €</p></div>
             )}
 
             <h3>Votre mode de livraison</h3>
 
-            <p>{delivery ? (delivery === "home" ? `À votre domicile situé ${user.adresse}` : "Au magasin situé 1 Rue Cafthe, 41000 Blois") : null}</p>
+            <p>{delivery ? (delivery === "home" ? `À votre domicile situé ${user.adresse}` : "Au magasin situé 1 Rue CafThé, 41000 Blois") : null}</p>
 
 
-            <button><Link to={`/delivery_method`} className={"details-btn"}>
+            <button className="details-btn gap" onClick={() => navigate("/delivery_method")} >
                 Retour
-            </Link></button>
+            </button>
 
-            <button onClick={() => handlePayment("online")}>Payer en ligne</button>
+            <button className="details-btn gap" onClick={() => handlePayment("online")}>Payer en ligne</button>
 
-            {/*Afficher le bouton uniquement si la livraison est en magasin*/}
+            {/* Afficher le bouton uniquement si la livraison est en magasin */}
             {delivery === "store" && (
-                <button onClick={() => handlePayment("inStore")}>Payer en magasin</button>
+                <button className="details-btn" onClick={() => handlePayment("inStore")}>Payer en magasin</button>
             )}
 
         </div>

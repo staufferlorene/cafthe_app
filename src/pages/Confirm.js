@@ -1,6 +1,7 @@
 import React from 'react';
 import {useLocation} from "react-router-dom";
 import "../styles/Global.css";
+import "../styles/Confirm.css";
 
 function Confirm(props) {
 
@@ -29,16 +30,16 @@ function Confirm(props) {
     }
 
     return (
-        <div>
+        <div className="confirm-container">
             <h2>Confirmation</h2>
 
-            <p>Nous vous remercions pour votre achat sur Cafthé.</p>
+            <p>Nous vous remercions pour votre achat sur CafThé.</p>
 
             <p>{msgUn()}</p>
 
             <p> Vous recevrez un e-mail de confirmation {msgDeux()}</p>
 
-            <p> Encore merci pour votre confiance et à très bientôt sur Cafthé !</p>
+            <p> Encore merci pour votre confiance et à très bientôt sur CafThé !</p>
         </div>
     );
 }

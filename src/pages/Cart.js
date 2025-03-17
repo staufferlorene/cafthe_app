@@ -16,7 +16,7 @@ function Cart() {
     const token = localStorage.getItem("token");
     if (!token) {
         console.error("Token manquant, impossible de charger le panier.");
-        return <div>Veuillez vous connecter pour accéder au panier.</div>;
+        return <div className="cart-container"><p>Veuillez vous connecter pour accéder au panier.</p></div>;
     }
 
     // Calcul montant total TTC

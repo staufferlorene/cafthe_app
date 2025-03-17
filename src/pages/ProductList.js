@@ -55,6 +55,15 @@ function ProductList({search}) {
     return (
 
         <div>
+            <div className="banniere">
+                <div className="coffret">
+                    <p>Coffret découverte</p>
+                </div>
+                <div className="selection">
+                    <p>Notre sélection</p>
+                </div>
+            </div>
+
             <h3>Liste des produits</h3>
 
             <div className="product-list">

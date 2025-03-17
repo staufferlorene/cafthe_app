@@ -1,0 +1,20 @@
+/* Style du conteneur principal */
+.confirm-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #FBFBFB;
+    border-radius: 8px;
+    text-align: center;
+    color: #010101;
+}
+
+.confirm-container h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.confirm-container p {
+    margin-bottom: 10px;
+}
+

@@ -62,9 +62,7 @@ STYLE DIV
     display: flex;
 }
 
-h1,
-h2,
-h3,
+
 p,
 a,
 th,
@@ -72,7 +70,15 @@ td,
 select,
 label {
     font-family: "Oswald";
+    font-size: 20px;
 }
+
+h1,
+h2,
+h3 {
+    font-family: "Oswald";
+}
+
 
 /* Style du bouton */
 .details-btn {
@@ -91,6 +97,20 @@ label {
 
 .details-btn:hover {
     background-color: #46341F;
+}
+
+.petit-btn {
+    background-color: #65451F;
+    color: #FBFBFB;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    font-family: "Oswald";
+    font-weight: 400;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    margin-left: 10px;
 }
 
 /***********************************************************
@@ -116,18 +136,22 @@ MESSAGE
 
 /* Message de succès */
 .msgSucces {
-    background-color: green;
-    color: white;
-    text-align: center;
-    width: 300px;
-    padding: 10px;
-    margin: 10px 0;
+background-color: #008000;
+color: #fafafa;
+padding: 10px;
+border-radius: 5px;
+font-weight: bold;
+margin-top: 10px;
+display: flex;
+justify-content: center;
 }
+
+
 
 /* Message d'erreur */
 .msgError {
-    background-color: #FFCCCC;
-    color: #CC0000;
+    background-color: #fa9d9d;
+    color: #860000;
     padding: 10px;
     border-radius: 5px;
     font-weight: bold;
@@ -143,32 +167,3 @@ MESSAGE
     margin-bottom: 10px;
 }
 
-
-
-/***********************************************************
-************************************************************
-MEDIA QUERIES
-************************************************************
-***********************************************************/
-
-
-@media (max-width: 768px) {
-    .product-list {
-        padding: 20px 100px;
-    }
-
-    .product-card {
-        width: calc(50% - 20px);
-    }
-}
-
-
-@media (max-width: 480px) {
-    .product-list {
-        padding: 20px 20px;
-    }
-
-    .product-card {
-        width: 100%;
-    }
-}

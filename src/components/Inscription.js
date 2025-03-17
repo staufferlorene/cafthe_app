@@ -64,7 +64,7 @@ function Inscription(props) {
             <form onSubmit={handleSubmit}>
                 <ul>
                     <li>
-                        <label>Saisir votre nom :</label>
+                        <label>Saisir votre nom : </label>
                         <input
                             type="text"
                             value={nom}
@@ -73,7 +73,7 @@ function Inscription(props) {
                         />
                     </li>
                     <li>
-                        <label>Saisir votre prénom :</label>
+                        <label>Saisir votre prénom : </label>
                         <input
                             type="text"
                             value={prenom}
@@ -82,7 +82,7 @@ function Inscription(props) {
                         />
                     </li>
                     <li>
-                        <label>Saisir votre n° téléphone :</label>
+                        <label>Saisir votre n° téléphone : </label>
                         <input
                             type="tel"
                             value={tel}
@@ -90,7 +90,7 @@ function Inscription(props) {
                         />
                     </li>
                     <li>
-                        <label>Saisir votre adresse postale :</label>
+                        <label>Saisir votre adresse postale : </label>
                         <input
                             type="text"
                             value={adresse}
@@ -99,7 +99,7 @@ function Inscription(props) {
                         />
                     </li>
                     <li>
-                        <label>Saisir votre adresse mail :</label>
+                        <label>Saisir votre adresse mail : </label>
                         <input
                             type="email"
                             value={mail}
@@ -108,7 +108,7 @@ function Inscription(props) {
                         />
                     </li>
                     <li>
-                        <label>Définir votre mot de passe :</label>
+                        <label>Définir votre mot de passe : </label>
                         <input
                             type="password"
                             value={mdp_one}
@@ -117,7 +117,7 @@ function Inscription(props) {
                         />
                     </li>
                     <li>
-                        <label>Confirmer votre mot de passe :</label>
+                        <label>Confirmer votre mot de passe : </label>
                         <input
                             type="password"
                             value={mdp_two}
@@ -135,7 +135,7 @@ function Inscription(props) {
                     <div className="msgError">{errorMsg}</div>
                 )}
 
-                <button type="submit">S'inscrire</button>
+                <button className="details-btn" type="submit">S'inscrire</button>
             </form>
         </div>
     );

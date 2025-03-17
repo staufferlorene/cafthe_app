@@ -1,12 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import {Link, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import "../styles/Global.css";
+import "../styles/OrderDetails.css";
 
 function OrderDetails(props) {
     const { id } = useParams();
     const user = JSON.parse(localStorage.getItem("user"));
     const [orders, setOrders] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchProduits = async () => {
@@ -34,12 +36,13 @@ function OrderDetails(props) {
     }
 
     return (
-        <div>
-            <h3>Détail de la commande numéro {id}</h3>
+        <div className="order-details-container">
+            <h2>Détail de votre commande</h2>
+            <h3>Commande numéro {id}</h3>
             <div className={"command-list"}>
                 {orders.map((order) => (
                     <div className={"command"}>
-                        <p>Designation : {order.Nom_produit}</p>
+                        <p>Produit : {order.Nom_produit}</p>
                         <p>Quantité : {order.Quantite_produit_ligne_commande}</p>
                         <p>Conditionnement : {order.Type_conditionnement}</p>
                         <p>Prix unitaire TTC : {order.Prix_unitaire_ligne_commande} €</p>
@@ -54,9 +57,10 @@ function OrderDetails(props) {
                     <p>Statut de la commande : {orders[0].Statut_commande}</p>
                 </div>
 
-                <Link to={`/commande/client/${user.id}`} className={"details-btn"}>
-                    Retour aux commandes
-                </Link>
+                <button className="details-btn" onClick={() => navigate (`/commande/client/${user.id}`)}> Retour aux commandes</button>
+                {/*<Link to={`/commande/client/${user.id}`} className={"details-btn"}>*/}
+                {/*    Retour aux commandes*/}
+                {/*</Link>*/}
             </div>
         </div>
     );

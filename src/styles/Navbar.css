@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Poetsen+One&display=swap');
+
 .nav {
     display: flex;
     flex-direction: row;
@@ -6,5 +8,23 @@
 }
 
 .nav a {
-    color: black;
+    color: #010101;
+    font-family: "Poetsen One";
+    font-size: 30px;
+}
+
+.nav a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 780px) {
+    .nav a {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 620px) {
+    .nav {
+        gap: 10px;
+    }
 }

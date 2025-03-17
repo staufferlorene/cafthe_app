@@ -3,5 +3,42 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    padding: 20px 250px 20px 250px;
+    justify-content: center;
+}
+
+.banniere {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 50px;
+}
+
+.coffret {
+    background-image: url("/public/coffret.png");
+    background-position: right center;
+    text-align: end;
+}
+
+.selection {
+    background-image: url("/public/selection.png");
+    background-position: left center;
+}
+
+/* élément commun aux 2 div (texte et image) */
+.coffret p,
+.selection p {
+    font-size: 35px;
+    margin-top: 20%;
+    color: #010101;
+}
+
+.coffret,
+.selection {
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 350px;
+    font-weight: bold;
+    filter: opacity(75%);
+
 }

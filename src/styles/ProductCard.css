@@ -7,6 +7,7 @@
     text-align: center;
     /* Animation d'élévation au survol */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: calc(33% - 20px);
     max-width: 300px;
     margin: 10px;
     box-sizing: border-box;
@@ -40,16 +41,18 @@
 /* Thé */
 .product-card-1 {
     background-color: #D0C3A1;
-    color: #03300B;
+    color: #0c7c23;
+    /*color: #03300B;*/
 }
 
 /* Café */
 .product-card-2 {
     background-color: #C8AE7D;
-    color: #461B0A;
+    color: #451c0a;
+    /*color: #461B0A;*/
 }
 
-/* Accessoire */
+/* Accessoires */
 .product-card-3 {
     background-color: #AEAEAE;
     color: #141414;
@@ -65,14 +68,17 @@
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
 }
 
+/* Thé */
 .product-card-1:hover {
     background-color: #BDB193;
 }
 
+/* Café */
 .product-card-2:hover {
     background-color: #B29B6E;
 }
 
+/* Accessoires */
 .product-card-3:hover {
     background-color: #9E9E9E;
 }
@@ -84,5 +90,17 @@
 @media (max-width: 768px) {
     .gap{
         margin-bottom: 5px;
+    }
+}
+
+@media (max-width: 768px) {
+    .product-card {
+        width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .product-card {
+        width: 100%;
     }
 }

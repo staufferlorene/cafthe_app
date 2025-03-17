@@ -1,0 +1,49 @@
+/* Style du conteneur principal */
+.summary-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #FBFBFB;
+    border-radius: 8px;
+    text-align: center;
+    color: #010101;
+}
+
+.summary-container h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.summary-container h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.summary-table {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.summary-table th {
+    background: #65451F;
+    color: #FBFBFB;
+    padding: 12px;
+    text-align: center;
+}
+
+.summary-table td {
+    padding: 10px;
+    border-bottom: 1px solid #D9D9D9;
+    text-align: center;
+}
+
+.Total-TTC {
+    margin: 20px 0 40px 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.summary-container p {
+    margin-bottom: 20px;
+    font-size: 20px;
+}

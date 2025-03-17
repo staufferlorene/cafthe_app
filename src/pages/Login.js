@@ -2,12 +2,14 @@ import React, {useContext, useState} from 'react';
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import "../styles/Global.css";
 import Inscription from "../components/Inscription";
+import "../styles/Global.css";
+import "../styles/Login.css";
+
 
 function Login(props) {
-    const { login } = useContext(AuthContext); // accès à la fonction login venant du contexte
-    const navigate = useNavigate(); // la navigation
+    const { login } = useContext(AuthContext); // accès à la fonction login venant du contexte d'authentification
+    const navigate = useNavigate();
 
    const [email, setEmail] = useState("");
    const [mdp, setMdp] = useState("");
@@ -48,41 +50,44 @@ function Login(props) {
     };
 
     return (
-        <>
-        <div>
-            <h2>Connexion</h2>
-                <form onSubmit={handleSubmit}>
-                    <ul>
-                        <li>
-                            <label>Saisir votre mail :</label>
-                            <input
-                                type="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                required
-                            />
-                        </li>
-                        <li>
-                            <label>Saisir votre mot de passe :</label>
-                            <input
-                                type="password"
-                                value={mdp}
-                                onChange={(e) => setMdp(e.target.value)}
-                                required
-                            />
-                        </li>
-                    </ul>
-                    {errorMsg && (
-                        <div>{errorMsg}</div>
-                    )}
-                <button type="submit">Se connecter</button>
-            </form>
-        </div>
+        <div className="login-container">
+            <h1>Bienvenue chez CafThé</h1>
+            <div className="login">
+                <div>
+                    <h2>Connexion</h2>
+                        <form onSubmit={handleSubmit}>
+                            <ul>
+                                <li>
+                                    <label>Saisir votre mail : </label>
+                                    <input
+                                        type="email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        required
+                                    />
+                                </li>
+                                <li>
+                                    <label>Saisir votre mot de passe : </label>
+                                    <input
+                                        type="password"
+                                        value={mdp}
+                                        onChange={(e) => setMdp(e.target.value)}
+                                        required
+                                    />
+                                </li>
+                            </ul>
+                            {errorMsg && (
+                                <div>{errorMsg}</div>
+                            )}
+                        <button className="details-btn" type="submit">Se connecter</button>
+                    </form>
+                </div>
 
-        <div>
-            <Inscription />
+                <div>
+                    <Inscription />
+                </div>
+            </div>
         </div>
-        </>
     );
 }
 

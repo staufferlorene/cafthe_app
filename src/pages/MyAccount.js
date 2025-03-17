@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import "../styles/Global.css";
+import "../styles/MyAccount.css";
 
 function MyAccount(props) {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -121,13 +122,13 @@ function MyAccount(props) {
     };
 
     return (
-        <div>
+        <div className="account-container">
             <h2>Vos informations</h2>
             <p>Nom : {infos.Nom_client}</p>
             <p>Prénom : {infos.Prenom_client}</p>
 
             <p>Téléphone : {infos.Telephone_client}
-                <button onClick={() => handleClick("tel")}>Modifier</button>
+                <button className="petit-btn" onClick={() => handleClick("tel")}>Modifier</button>
             </p>
             {actifTel ? (
                 <form onSubmit={handleSubmit}>
@@ -142,12 +143,12 @@ function MyAccount(props) {
                         required
                     />
 
-                    <button type="submit">Valider</button>
+                    <button className="petit-btn" type="submit">Valider</button>
                 </form>
             ) : ""}
 
             <p>Adresse : {infos.Adresse_client}
-                <button onClick={() => handleClick("adresse")}>Modifier</button>
+                <button className="petit-btn" onClick={() => handleClick("adresse")}>Modifier</button>
             </p>
             {actifAdresse ? (
                 <form onSubmit={handleSubmit}>
@@ -162,12 +163,12 @@ function MyAccount(props) {
                         required
                     />
 
-                    <button type="submit">Valider</button>
+                    <button className="petit-btn" type="submit">Valider</button>
                 </form>
             ) : ""}
 
             <p>Mail : {infos.Mail_client}
-                <button onClick={() => handleClick("mail")}>Modifier</button>
+                <button className="petit-btn" onClick={() => handleClick("mail")}>Modifier</button>
             </p>
             {actifMail ? (
                 <form onSubmit={handleSubmit}>
@@ -183,11 +184,11 @@ function MyAccount(props) {
                         required
                     />
 
-                    <button type="submit">Valider</button>
+                    <button className="petit-btn" type="submit">Valider</button>
                 </form>
             ) : ""}
 
-            <p>Mot de passe : ****** <button onClick={() => setActifPassword(!actifPassword)}>Modifier</button></p>
+            <p>Mot de passe : ****** <button className="petit-btn" onClick={() => setActifPassword(!actifPassword)}>Modifier</button></p>
             {actifPassword && (
                 <form onSubmit={handlePassword}>
                     <label>Ancien mot de passe : </label>
@@ -225,7 +226,7 @@ function MyAccount(props) {
                         <div className="msgError">{errorMsg}</div>
                     )}
 
-                    <button type="submit">Valider</button>
+                    <button className="petit-btn" type="submit">Valider</button>
                 </form>
             )}
         </div>

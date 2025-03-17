@@ -1,0 +1,23 @@
+/* Style du conteneur principal */
+.order-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #FBFBFB;
+    border-radius: 8px;
+    text-align: center;
+    color: #010101;
+}
+
+.order-container p {
+    margin: 10px;
+}
+
+.order-container button {
+    margin-bottom: 15px;
+}
+
+.order-container h2 {
+    font-size: 28px;
+    margin: 20px;
+}
