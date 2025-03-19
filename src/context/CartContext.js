@@ -1,5 +1,6 @@
 import { createContext, useReducer, useEffect } from "react";
 
+// Création du contexte, tout est vide par défaut et défini par la suite
 export const CartContext = createContext({
     items: [],
     addItemToCart: () => {},
@@ -8,11 +9,13 @@ export const CartContext = createContext({
     clearCart: () => {},
 });
 
+// Récupération du panier dans le localstorage s'il est existant
 const loadCartFromLocalStorage = () => {
     const storedCart = localStorage.getItem("cart");
     return storedCart ? JSON.parse(storedCart) : [];
 };
 
+// gérer les différentes actions dans le panier
 const cartReducer = (state, action) => {
     let updatedItems;
 
@@ -29,13 +32,14 @@ const cartReducer = (state, action) => {
         // Ajouter le produit s'il n'est pas déjà dans le panier
         if (!state.items.some(item => item.id === action.payload.Id_produit)) {
             updatedItems.push({
+                // ajouter le produit avec toutes les infos suivantes dans le localstorage
                 id: action.payload.Id_produit,
                 name: action.payload.Nom_produit,
                 amount: action.payload.Prix_HT,
                 amount_TTC: action.payload.Prix_TTC,
                 tva_category: action.payload.Tva_categorie,
                 type_conditionnement: action.payload.Type_conditionnement,
-                quantity: 1,
+                quantity: action.payload.Type_conditionnement === "unitaire" ? 1 : 50
             });
         }
         console.log(action);
@@ -67,11 +71,12 @@ const cartReducer = (state, action) => {
         console.log(updatedItems);
     }
 
-
+    // Filtrer pour retirer du panier
     if (action.type === "SUPPRIMER_DU_PANIER") {
         updatedItems = state.items.filter(item => item.id !== action.payload.Id_produit);
     }
 
+    // Réinitialisation du panier
     if (action.type === "VIDER_PANIER") {
         updatedItems = [];
     }
@@ -81,6 +86,7 @@ const cartReducer = (state, action) => {
 
     return {items: updatedItems};
 };
+
 
 export const CartContextProvider = ({ children }) => {
     const [cartState, cartDispatch] = useReducer(cartReducer, {items: loadCartFromLocalStorage()});
@@ -94,6 +100,7 @@ export const CartContextProvider = ({ children }) => {
     // Actions pour modifier le panier (ajout, màj quantité, suppression, vider panier) //
     //////////////////////////////////////////////////////////////////////
 
+    // envoi des actions au cartReducer
     const addItemToCart = (Id_produit, Nom_produit, Prix_HT, Prix_TTC, Tva_categorie, Type_conditionnement) => {
         cartDispatch({
             type: "AJOUTER_DANS_PANIER",
