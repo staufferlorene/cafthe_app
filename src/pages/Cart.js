@@ -6,7 +6,6 @@ import {faTrash} from "@fortawesome/free-solid-svg-icons";
 import "../styles/Global.css";
 import "../styles/Cart.css";
 
-
 function Cart() {
     const {items, updateItemQuantity, removeItemFromCart } = useContext(CartContext);
     console.log(items)
@@ -20,7 +19,18 @@ function Cart() {
     }
 
     // Calcul montant total TTC
-    const totalAmount = items.reduce((acc, item)=> (acc+item.amount_TTC * item.quantity), 0);
+    const totalAmount = items.reduce((acc, item) => {
+        let unityTTC;
+        if (item.type_conditionnement === "vrac") {
+            unityTTC = (item.amount_TTC * item.quantity) / 50;
+        } else if (item.type_conditionnement === "unitaire") {
+            unityTTC = item.amount_TTC * item.quantity;
+        } else {
+            unityTTC = 0;
+        }
+        return acc + unityTTC;
+    }, 0);
+
 
     function handleDeliveryMethod() {
         navigate("/delivery_method");
@@ -37,7 +47,7 @@ function Cart() {
                         <tr>
                             <th>Produit</th>
                             <th>Quantité</th>
-                            <th>Prix unitaire</th>
+                            <th>Prix unitaire / 50g</th>
                             <th>Prix TTC</th>
                             <th></th>
                         </tr>
@@ -58,8 +68,10 @@ function Cart() {
 
                             return (
                             <tr key={product.id}>
+                                {/*Correspond à produit dans tableau*/}
                                 <td>{product.name}</td>
 
+                                {/*Correspond à quantité dans tableau*/}
                                 {/* Afficher liste déroulante pour produit vendu en vrac */}
                                 {product.type_conditionnement === "vrac" && (
                                 <td>
@@ -76,6 +88,7 @@ function Cart() {
                                 </td>
                                 )}
 
+                                {/*Correspond toujours à la quantité dans tableau*/}
                                 {/* Afficher quantité pour produit vendu à l'unité */}
                                 {product.type_conditionnement === "unitaire" && (
                                 <td className="quantity-container">
@@ -85,7 +98,10 @@ function Cart() {
                                 </td>
                                 )}
 
+                                {/*Correspond à prix unitaire dans tableau*/}
                                 <td>{product.amount_TTC} €</td>
+
+                                {/*Correspond à prix TTC dans tableau*/}
                                 <td>{unityTTC.toFixed(2)} €</td>
                                 <td>
                                     <button className="delete-btn" onClick={() => removeItemFromCart(product.id)} aria-label="Supprimer"><FontAwesomeIcon icon={faTrash} /></button>

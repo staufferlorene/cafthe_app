@@ -11,7 +11,18 @@ function Summary(props) {
     const { clearCart } = useContext(CartContext);
 
     // Calcul montant total TTC
-    const totalAmount = cart.reduce((acc, cart)=> (acc+cart.amount_TTC * cart.quantity), 0);
+    const totalAmount = cart.reduce((acc, item) => {
+        let unityTTC;
+        if (item.type_conditionnement === "vrac") {
+            unityTTC = (item.amount_TTC * item.quantity) / 50;
+        } else if (item.type_conditionnement === "unitaire") {
+            unityTTC = item.amount_TTC * item.quantity;
+        } else {
+            unityTTC = 0;
+        }
+        return acc + unityTTC;
+    }, 0);
+
 
     // Pour accéder à la donnée stockée dans location (la méthode de livraison choisie)
     const location = useLocation();
@@ -42,15 +53,23 @@ function Summary(props) {
                     <tr>
                         <th>Produit</th>
                         <th>Quantité</th>
-                        <th>Prix unitaire</th>
+                        <th>Prix unitaire / 50g</th>
                         <th>Prix TTC</th>
-                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
                         {cart.map((product) => {
+
                             // Calcul TTC pour chaque produit
-                            const unityTTC = product.amount_TTC * product.quantity;
+                            let unityTTC;
+                            if (product.type_conditionnement === "vrac") {
+                                // Calcul du prix TTC pour les produits en vrac
+                                unityTTC = (product.amount_TTC * product.quantity) / 50;
+                            }
+
+                            if (product.type_conditionnement === "unitaire") {
+                                unityTTC = product.amount_TTC * product.quantity;
+                            }
 
                             return (
                                 <tr key={product.id}>
@@ -82,7 +101,6 @@ function Summary(props) {
             <h3>Votre mode de livraison</h3>
 
             <p>{delivery ? (delivery === "home" ? `À votre domicile situé ${user.adresse}` : "Au magasin situé 1 Rue CafThé, 41000 Blois") : null}</p>
-
 
             <button className="details-btn gap" onClick={() => navigate("/delivery_method")} >
                 Retour
