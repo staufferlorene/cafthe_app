@@ -50,7 +50,7 @@ function PageTea({search}) {
 
     return (
         <div>
-            <h3>Liste des thés</h3>
+            <h1>Liste des thés</h1>
             <div className="product-list">
                 {filtrerProduits.length > 0 ? (
                     filtrerProduits.map((produit) => (

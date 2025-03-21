@@ -1,5 +1,5 @@
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
-import './styles/App.css';
+// import './styles/App.css';
 import Layout from "./layout/Layout";
 import Home from "./pages/Home";
 import ProductDetails from "./pages/ProductDetails";
@@ -14,6 +14,9 @@ import DeliveryMethod from "./pages/DeliveryMethod";
 import Summary from "./pages/Summary";
 import Confirm from "./pages/Confirm";
 import SearchBar from "./components/SearchBar";
+import PrivacyPolicy from "./components/PrivacyPolicy";
+import LegalNotices from "./components/LegalNotices";
+import Cgv from "./components/CGV";
 
 function App() {
   return (
@@ -36,6 +39,9 @@ function App() {
                         <Route path={"/delivery_method"} element={<DeliveryMethod />}/>
                         <Route path={"/summary"} element={<Summary />}/>
                         <Route path={"/confirm"} element={<Confirm />}/>
+                        <Route path={"/privacy_policy"} element={<PrivacyPolicy />}/>
+                        <Route path={"/legal_notices"} element={<LegalNotices />}/>
+                        <Route path={"/cgv"} element={<Cgv />}/>
                     </Route>
                 </Routes>
             </Router>

@@ -50,7 +50,7 @@ function PageCoffee({search}) {
 
     return (
         <div>
-            <h3>Liste des cafés</h3>
+            <h1>Liste des cafés</h1>
             <div className="product-list">
                 {filtrerProduits.length > 0 ? (
                     filtrerProduits.map((produit) => (

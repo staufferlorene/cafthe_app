@@ -33,10 +33,15 @@ function ProductDetails() {
                     <img className="img-details" src={`/${produits.Chemin_img}`} alt="image de produit vendu par notre enseigne"/>
                 </div>
                 <div className="product-text-details">
-                    <h2 className="text-title">{produits.Nom_produit}</h2>
+                    <h1 className="text-title">{produits.Nom_produit}</h1>
                     <p className="text-description">Description: {produits.Description}</p>
                     <p className="text-stock">En stock: {produits.Stock}</p>
-                    <p className="text-price">{produits.Prix_TTC} €</p>
+
+                    {/*Notion "à partir de X €" si vrac*/}
+                    {produits.Type_conditionnement === "vrac" ? (
+                    <p className="text-price">A partir de {produits.Prix_TTC} €</p>
+                    ) : <p>{produits.Prix_TTC} €</p>}
+
                     <button className="details-btn mb" onClick={() => handleAddToCart(produits.Id_produit)}>
                         Ajouter au panier
                     </button>

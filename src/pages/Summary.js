@@ -41,8 +41,8 @@ function Summary(props) {
 
     return (
         <div className="summary-container">
-            <h2>Récapitulatif de votre commande</h2>
-            <h3>Votre panier</h3>
+            <h1>Récapitulatif de la commande</h1>
+            <h2>Votre panier</h2>
 
             {cart.length === 0 ? (
                 <p>Votre panier est vide.</p>
@@ -98,7 +98,7 @@ function Summary(props) {
             <div><p className="Total-TTC">Total TTC: {totalAmount.toFixed(2)} €</p></div>
             )}
 
-            <h3>Votre mode de livraison</h3>
+            <h2>Votre mode de livraison</h2>
 
             <p>{delivery ? (delivery === "home" ? `À votre domicile situé ${user.adresse}` : "Au magasin situé 1 Rue CafThé, 41000 Blois") : null}</p>
 

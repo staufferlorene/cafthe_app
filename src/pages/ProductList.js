@@ -64,7 +64,7 @@ function ProductList({search}) {
                 </div>
             </div>
 
-            <h3>Liste des produits</h3>
+            <h1>Liste des produits</h1>
 
             <div className="product-list">
                 {filtrerProduits.length > 0 ? (

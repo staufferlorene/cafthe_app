@@ -37,8 +37,8 @@ function OrderDetails(props) {
 
     return (
         <div className="order-details-container">
-            <h2>Détail de votre commande</h2>
-            <h3>Commande numéro {id}</h3>
+            <h1>Détail commande</h1>
+            <h2>Commande numéro {id}</h2>
             <div className={"command-list"}>
                 {orders.map((order) => (
                     <div className={"command"}>

@@ -50,7 +50,7 @@ function PageAccessory({search}) {
 
     return (
         <div>
-            <h3>Liste des accessoires</h3>
+            <h1>Liste des accessoires</h1>
 
             <div className="product-list">
                 {filtrerProduits.length > 0 ? (

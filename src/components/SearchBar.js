@@ -8,7 +8,6 @@ import ProductList from "../pages/ProductList";
 function SearchBar({page}) {
     const [searchInput, setSearchInput] = useState("")
 
-    // NEW COMMENTE
     const handleChange = (e) => {
         e.preventDefault();
         setSearchInput(e.target.value);
@@ -22,11 +21,10 @@ function SearchBar({page}) {
                 onChange={handleChange}
                 value={searchInput}
             />
-            {page === "cafe" ?
-            <PageCoffee search={searchInput}/> :
-            page === "the" ? <PageTea search={searchInput}/> :
-                page === "accessoire" ? <PageAccessory search={searchInput}/> :
-                    <ProductList search={searchInput}/>}
+            {page === "cafe" ? <PageCoffee search={searchInput}/> :
+                page === "the" ? <PageTea search={searchInput}/> :
+                    page === "accessoire" ? <PageAccessory search={searchInput}/> :
+                        <ProductList search={searchInput}/>}
         </div>
     );
 }

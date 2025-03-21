@@ -123,7 +123,7 @@ function MyAccount(props) {
 
     return (
         <div className="account-container">
-            <h2>Vos informations</h2>
+            <h1>Informations</h1>
             <p>Nom : {infos.Nom_client}</p>
             <p>Prénom : {infos.Prenom_client}</p>
 

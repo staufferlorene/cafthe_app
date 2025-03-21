@@ -31,7 +31,7 @@ function Confirm(props) {
 
     return (
         <div className="confirm-container">
-            <h2>Confirmation</h2>
+            <h1>Confirmation</h1>
 
             <p>Nous vous remercions pour votre achat sur CafThé.</p>
 

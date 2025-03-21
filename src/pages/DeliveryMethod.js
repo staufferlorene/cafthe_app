@@ -30,7 +30,7 @@ function DeliveryMethod(props) {
 
     return (
         <div className="deliveryMethod-container">
-            <h2>Choix du mode de livraison</h2>
+            <h1>Choix du mode de livraison</h1>
             <form onSubmit={handleSummary}>
                 <p className="deliveryMethod-mb">Veuillez choisir votre livraison :</p>
                 <div className="radio-container">

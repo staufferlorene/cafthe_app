@@ -14,9 +14,14 @@ function ProductCard({produit}) {
 
     return (
         <div className={`product-card product-card-${produit.Id_categorie}`}>
-            <img className="product-img" src={`/${produit.Chemin_img}`} alt=""/>
+            <img className="product-img" src={`/${produit.Chemin_img}`} alt={"image" + produit.Chemin_img} />
             <h3>{produit.Nom_produit}</h3>
-            <p>{produit.Prix_TTC} €</p>
+
+            {/*Notion "à partir de X €" si vrac*/}
+            {produit.Type_conditionnement === "vrac" ? (
+                <p>A partir de {produit.Prix_TTC} €</p>
+            ) : <p>{produit.Prix_TTC} €</p>}
+
             <button className="details-btn gap" onClick={() => navigate(`/produit/${produit.Id_produit}`)}>
                 Voir détails
             </button>

@@ -26,6 +26,7 @@ function MyOrder(props) {
     if (!orders || orders.length === 0) {
         return (
             <div className="order-container">
+                <h1>Commandes</h1>
                 <p>Vous n'avez pas passée de commande</p>
                 <button className={"details-btn"} onClick={() => navigate(`/`)}>Retour</button>
                 {/*<Link to={`/`} className={"details-btn"}>*/}
@@ -37,7 +38,7 @@ function MyOrder(props) {
 
     return (
         <div className="order-container">
-            <h2>Vos commandes</h2>
+            <h1>Commandes</h1>
             {orders.map((order) => (
                 <div>
                 {/*Afficher la date au format français*/}
