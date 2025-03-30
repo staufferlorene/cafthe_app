@@ -32,6 +32,8 @@ function App() {
                         <Route path={"categorie/cafe"} element={<SearchBar page={"cafe"}/>}/>
                         <Route path={"categorie/the"} element={<SearchBar page={"the"}/>}/>
                         <Route path={"categorie/accessoire"} element={<SearchBar page={"accessoire"}/>}/>
+                        <Route path={"coffret"} element={<SearchBar page={"coffret"}/>}/>
+                        <Route path={"selection"} element={<SearchBar page={"selection"}/>}/>
                         <Route path={"/my_account"} element={<MyAccount />}/>
                         <Route path={"/commande/client/:id"} element={<MyOrder />}/>
                         <Route path={"/commande/detail/:id"} element={<OrderDetails />}/>

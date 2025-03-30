@@ -1,10 +1,14 @@
 import React, {useState} from 'react';
-import "../styles/Global.css";
 import PageCoffee from "../pages/PageCoffee";
 import PageTea from "../pages/PageTea";
 import PageAccessory from "../pages/PageAccessory";
 import ProductList from "../pages/ProductList";
+import PageBox from "../pages/PageBox";
+import PageSelection from "../pages/PageSelection";
+import "../styles/Global.css";
+import "../styles/SearchBar.css";
 
+// Prop indique catégorie produit affichée
 function SearchBar({page}) {
     const [searchInput, setSearchInput] = useState("")
 
@@ -15,7 +19,7 @@ function SearchBar({page}) {
 
     return (
         <div>
-            <input
+            <input className="searchBar"
                 type="search"
                 placeholder="Rechercher"
                 onChange={handleChange}
@@ -24,7 +28,9 @@ function SearchBar({page}) {
             {page === "cafe" ? <PageCoffee search={searchInput}/> :
                 page === "the" ? <PageTea search={searchInput}/> :
                     page === "accessoire" ? <PageAccessory search={searchInput}/> :
-                        <ProductList search={searchInput}/>}
+                        page === "coffret" ? <PageBox search={searchInput}/> :
+                            page === "selection" ? <PageSelection search={searchInput}/> :
+                                <ProductList search={searchInput}/>}
         </div>
     );
 }
