@@ -13,7 +13,12 @@ function OrderDetails(props) {
     useEffect(() => {
         const fetchProduits = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/commande/detail/${id}`);
+                // Récupération du token
+                const token = localStorage.getItem("token");
+
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/commande/detail/${id}`,
+                // Envoi du token au serveur pour autoriser l'accès
+                { headers: {Authorization: `Bearer ${token}`} });
                 setOrders(response.data);
             } catch (error){
                 console.error("Erreur de chargement du détail de la commande", error);
@@ -52,15 +57,12 @@ function OrderDetails(props) {
                 <div className={"command"}>
                     {/*Afficher la date au format français*/}
                     <p>Date commande : {new Date(orders[0].Date_commande).toLocaleDateString('fr-FR')}</p>
-                    {/*on utilise premier objet présent dans orders[] car la date et le total sont les mêmes partout*/}
+                    {/*Utilisation du premier objet présent dans orders[] car la date et le total sont les mêmes partout*/}
                     <p>Montant total commande TTC : {orders[0].Montant_commande_TTC} €</p>
                     <p>Statut de la commande : {orders[0].Statut_commande}</p>
                 </div>
 
                 <button className="details-btn" onClick={() => navigate (`/commande/client/${user.id}`)}> Retour aux commandes</button>
-                {/*<Link to={`/commande/client/${user.id}`} className={"details-btn"}>*/}
-                {/*    Retour aux commandes*/}
-                {/*</Link>*/}
             </div>
         </div>
     );

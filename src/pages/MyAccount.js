@@ -26,7 +26,12 @@ function MyAccount(props) {
     useEffect(() => {
         const fetchProduits = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/client/${user.id}`);
+                // Récupération du token
+                const token = localStorage.getItem("token");
+
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/client/${user.id}`,
+                // Envoi du token au serveur pour autoriser l'accès
+                { headers: {Authorization: `Bearer ${token}`} });
                 setInfos(response.data);
             } catch (error){
                 console.error("Erreur de chargement", error);
@@ -63,11 +68,19 @@ function MyAccount(props) {
         const new_adresse = adresse || infos.Adresse_client;
 
         try {
-            const response = await axios.put(`${process.env.REACT_APP_API_URL}/api/client/update/${user.id}`, {
+            // Récupération du token
+            const token = localStorage.getItem("token");
+
+            const response = await axios.put(`${process.env.REACT_APP_API_URL}/api/client/update/${user.id}`,
+            {
                 Telephone_client: new_tel,
                 Mail_client: new_email,
                 Adresse_client: new_adresse
-            });
+            },
+
+            // Envoi du token au serveur pour autoriser l'accès
+            { headers: {Authorization: `Bearer ${token}`} }
+            );
 
             if (response.status === 200) {
                 setInfos({
@@ -103,10 +116,19 @@ function MyAccount(props) {
         }
 
         try {
-            const response = await axios.put(`${process.env.REACT_APP_API_URL}/api/client/update/mdp/${user.id}`, {
+            // Récupération du token
+            const token = localStorage.getItem("token");
+
+            const response = await axios.put
+            (`${process.env.REACT_APP_API_URL}/api/client/update/mdp/${user.id}`,
+            {
                 last_mdp: ancienMdp,
                 new_mdp: nouveauMdp
-            });
+            },
+
+            // Envoi du token au serveur pour autoriser l'accès
+            { headers: {Authorization: `Bearer ${token}`} }
+            );
 
             if (response.status === 200) {
                 setSuccesMsg('Mot de passe mis à jour avec succès');
