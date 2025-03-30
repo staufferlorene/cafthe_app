@@ -19,7 +19,7 @@ export function AuthProvider({ children }) {
         }
     }, []);
 
-    //Si le token ou le user changent, on met à jour le localStorage
+    // Si le token ou le user changent, on met à jour le localStorage
     useEffect(() => {
       if (token && user){
           localStorage.setItem("token", token);

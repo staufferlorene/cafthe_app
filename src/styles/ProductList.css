@@ -24,14 +24,6 @@
     background-position: left center;
 }
 
-/* élément commun aux 2 div (texte et image) */
-.coffret p,
-.selection p {
-    font-size: 35px;
-    margin-top: 20%;
-    color: #010101;
-}
-
 .coffret,
 .selection {
     background-size: contain;
@@ -40,5 +32,39 @@
     height: 350px;
     font-weight: bold;
     filter: opacity(75%);
+}
 
+/* élément commun aux 2 div (texte et image) */
+.coffret p,
+.selection p {
+    font-size: 35px;
+    margin-top: 25%;
+    color: #000000;
+}
+
+.coffret p {
+    margin-right: 15px;
+}
+
+.selection p {
+    margin-left: 15px;
+}
+
+.product-list-container h1 {
+    margin: 50px 0 20px 0;
+    font-size: 26px;
+    text-align: center;
+    font-weight: bold;
+}
+
+@media (max-width: 1000px) {
+    .banniere {
+        flex-direction: column;
+    }
+
+    .coffret,
+    .selection {
+        background-position: center;
+        text-align: center;
+    }
 }

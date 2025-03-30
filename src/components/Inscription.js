@@ -11,6 +11,7 @@ function Inscription(props) {
     const [mail, setMail] = useState("");
     const [mdp_one, setMdp_one] = useState("");
     const [mdp_two, setMdp_two] = useState("");
+    // Date = date du jour
     const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
     const [adresse, setAdresse] = useState("");
 
@@ -22,15 +23,17 @@ function Inscription(props) {
         const handleSubmit = async (e) => {
             e.preventDefault();
 
+            // Vérifier si nouveau mdp + confirmation sont identiques
             if (mdp_one !== mdp_two) {
                 setErrorMsg("Les mots de passes sont différents");
-                // vider les champs des mots de passes
+                // Vider les champs des mots de passes
                 setMdp_one("");
                 setMdp_two("");
                 return;
             }
 
             try {
+                // Envoi informations saisies à l'API
                 const response = await axios.post(`${process.env.REACT_APP_API_URL}/client/register`,
                 {
                         Nom_client: nom,

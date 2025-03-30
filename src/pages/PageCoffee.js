@@ -23,6 +23,7 @@ function PageCoffee({search}) {
         void fetchProduits()
     }, []);
 
+    // SearchBar
     const filtrerProduits = coffee.filter((produit) => {
         return produit.Nom_produit.toLowerCase().includes(search.toLowerCase());
     });
@@ -49,7 +50,7 @@ function PageCoffee({search}) {
     }
 
     return (
-        <div>
+        <div className="page-container">
             <h1>Liste des cafés</h1>
             <div className="product-list">
                 {filtrerProduits.length > 0 ? (

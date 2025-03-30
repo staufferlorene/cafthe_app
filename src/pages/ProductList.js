@@ -5,16 +5,17 @@ import Skeleton from "react-loading-skeleton";
 import "../styles/Global.css";
 import "react-loading-skeleton/dist/skeleton.css";
 import "../styles/ProductList.css";
+import {useNavigate} from "react-router-dom";
 
 function ProductList({search}) {
     const [produits, setProduits] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
     const fetchProduits = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/montantttc/produit`, {
-                // headers: { Authorization: "Bearer " + token },
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/produit`, {
             });
             setProduits(response.data);
         } catch (error) {
@@ -47,38 +48,35 @@ function ProductList({search}) {
         );
     }
 
+    // SearchBar
     const filtrerProduits = produits.filter((produit) => {
         return produit.Nom_produit.toLowerCase().includes(search.toLowerCase());
     });
 
 
     return (
-
-        <div>
-            <div className="banniere">
-                <div className="coffret">
-                    <p>Coffret découverte</p>
-                </div>
-                <div className="selection">
-                    <p>Notre sélection</p>
-                </div>
+        <div className="product-list-container">
+        <div className="banniere">
+            <div className="coffret" onClick={() => navigate('/coffret')}>
+                <p>Coffret découverte</p>
             </div>
-
-            <h1>Liste des produits</h1>
-
-            <div className="product-list">
-                {filtrerProduits.length > 0 ? (
-                    filtrerProduits.map((produit) => (
-                        <ProductCard key={produit.Id_produit} produit={produit} />
-                    ))
-                ) : (
-                    <p>Aucun produit trouvé pour cette recherche.</p>
-                )}
+            <div className="selection" onClick={() => navigate('/selection')}>
+                <p>Notre sélection</p>
             </div>
         </div>
 
+        <h1>Liste des produits</h1>
 
-
+        <div className="product-list">
+            {filtrerProduits.length > 0 ? (
+                filtrerProduits.map((produit) => (
+                    <ProductCard key={produit.Id_produit} produit={produit}/>
+                ))
+            ) : (
+                <p>Aucun produit trouvé pour cette recherche.</p>
+            )}
+        </div>
+    </div>
     );
 }
 

@@ -5,7 +5,6 @@ import SearchBar from "../components/SearchBar";
 function Home(props) {
     return (
         <div>
-            <h1>Bienvenue chez CafThé</h1>
             <SearchBar page={"Liste"}/>
         </div>
     );

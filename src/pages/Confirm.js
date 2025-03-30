@@ -5,14 +5,14 @@ import "../styles/Confirm.css";
 
 function Confirm(props) {
 
-    // Pour accéder aux données stockées dans location (méthode de livraison ET de paiement choisi)
+    // Accès aux données stockées dans location (méthode de livraison ET de paiement choisi)
     const location = useLocation();
-    // On récupère la valeur de delivery passé via useState
+    // Récupération de la valeur de delivery passé via useState
     const delivery = location.state?.delivery;
-    // On récupère la valeur de methodPayment passé via useState
+    // Récupération de la valeur de methodPayment passé via useState
     const methodPayment = location.state?.methodPayment;
 
-    //affichage conditionnel des messages
+    // Affichage conditionnel des messages
     function msgUn () {
         if ((delivery === "store" || delivery === "home") && methodPayment === "online") {
             return "Votre paiement a bien été pris en compte et votre commande est maintenant en cours de traitement."

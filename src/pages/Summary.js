@@ -24,17 +24,17 @@ function Summary(props) {
     }, 0);
 
 
-    // Pour accéder à la donnée stockée dans location (la méthode de livraison choisie)
+    // Accès à la donnée stockée dans location (la méthode de livraison choisie)
     const location = useLocation();
-    // On récupère la valeur de delivery passé via useState
+    // Récupération de la valeur de delivery passé via useState
     const delivery = location.state?.delivery;
-    // pour stocker le choix du mode de paiement
+    // Stockage du choix du mode de paiement
     const [methodPayment, setMethodPayment] = useState(null);
 
     function handlePayment(method) {
         setMethodPayment(method)
 
-        // utiliser useState pour faire passer les choix livraison + paiement sur la page confirm grâce à navigate
+        // Utilisation de useState pour faire passer les choix livraison + paiement sur la page confirm grâce à navigate
         navigate("/confirm", {state: {delivery, methodPayment: method}})
         clearCart();
     }
@@ -62,11 +62,13 @@ function Summary(props) {
 
                             // Calcul TTC pour chaque produit
                             let unityTTC;
+
+                            // Calcul du prix TTC pour les produits en vrac
                             if (product.type_conditionnement === "vrac") {
-                                // Calcul du prix TTC pour les produits en vrac
                                 unityTTC = (product.amount_TTC * product.quantity) / 50;
                             }
 
+                            // Calcul du prix TTC pour les produits unitaire
                             if (product.type_conditionnement === "unitaire") {
                                 unityTTC = product.amount_TTC * product.quantity;
                             }
@@ -80,7 +82,7 @@ function Summary(props) {
                                         <td>{product.quantity}g</td>)
                                         }
 
-                                        {/* si unitaire n'afficher que la quantité */}
+                                        {/* Si produit conditionnement unitaire n'afficher que la quantité */}
                                         {product.type_conditionnement === "unitaire" && (
                                             <td>{product.quantity}</td>)
                                         }

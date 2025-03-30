@@ -7,15 +7,19 @@ import "../styles/Global.css";
 import "../styles/Cart.css";
 
 function Cart() {
-    const {items, updateItemQuantity, removeItemFromCart } = useContext(CartContext);
-    console.log(items)
+    const {items, updateItemQuantity, removeItemFromCart} = useContext(CartContext);
     const navigate = useNavigate();
 
     // Blocage accès panier si pas connecté
     const token = localStorage.getItem("token");
     if (!token) {
         console.error("Token manquant, impossible de charger le panier.");
-        return <div className="cart-container"><p>Veuillez vous connecter pour accéder au panier.</p></div>;
+        return <div className="cart-container">
+            <p>Veuillez vous connecter pour accéder au panier.</p>
+            <button className="details-btn" onClick={() => navigate(`/login`)}>
+            Se connecter
+            </button>
+        </div>;
     }
 
     // Calcul montant total TTC
@@ -49,6 +53,7 @@ function Cart() {
                             <th>Quantité</th>
                             <th>Prix unitaire / 50g</th>
                             <th>Prix TTC</th>
+                            {/*Pour bouton d'action (suppression)*/}
                             <th></th>
                         </tr>
                     </thead>
@@ -57,11 +62,13 @@ function Cart() {
 
                             // Calcul TTC pour chaque produit
                             let unityTTC;
+
+                            // Calcul du prix TTC pour les produits en vrac
                             if (product.type_conditionnement === "vrac") {
-                                // Calcul du prix TTC pour les produits en vrac
                                 unityTTC = (product.amount_TTC * product.quantity) / 50;
                             }
 
+                            // Calcul du prix TTC pour les produits unitaire
                             if (product.type_conditionnement === "unitaire") {
                                 unityTTC = product.amount_TTC * product.quantity;
                             }
@@ -104,7 +111,7 @@ function Cart() {
                                 {/*Correspond à prix TTC dans tableau*/}
                                 <td>{unityTTC.toFixed(2)} €</td>
                                 <td>
-                                    <button className="delete-btn" onClick={() => removeItemFromCart(product.id)} aria-label="Supprimer"><FontAwesomeIcon icon={faTrash} /></button>
+                                    <button className="delete-btn" onClick={() => removeItemFromCart(product.id)} aria-label="Supprimer produit du panier"><FontAwesomeIcon icon={faTrash} /></button>
                                 </td>
                             </tr>
                             );

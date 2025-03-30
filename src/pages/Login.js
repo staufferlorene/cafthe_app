@@ -1,19 +1,19 @@
 import React, {useContext, useState} from 'react';
 import axios from "axios";
-import { AuthContext } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import {AuthContext} from "../context/AuthContext";
+import {useNavigate} from "react-router-dom";
 import Inscription from "../components/Inscription";
 import "../styles/Global.css";
 import "../styles/Login.css";
 
 
 function Login(props) {
-    const { login } = useContext(AuthContext); // accès à la fonction login venant du contexte d'authentification
+    const {login} = useContext(AuthContext); // Accès à la fonction login venant du contexte d'authentification
     const navigate = useNavigate();
 
-   const [email, setEmail] = useState("");
-   const [mdp, setMdp] = useState("");
-   const [errorMsg, setErrorMsg] = useState("");
+    const [email, setEmail] = useState("");
+    const [mdp, setMdp] = useState("");
+    const [errorMsg, setErrorMsg] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -29,10 +29,10 @@ function Login(props) {
 
             const { token, client } = response.data;
 
-            //On met à jour le contexte d'authentification
+            // On met à jour le contexte d'authentification
             login(token, client);
 
-            //Redirection du client vers une page
+            // Redirection du client vers une page
             navigate("/");
         } catch (error) {
             console.error("Erreur lors de la navigation : ", error);

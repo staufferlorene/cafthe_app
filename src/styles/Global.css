@@ -141,12 +141,10 @@ color: #fafafa;
 padding: 10px;
 border-radius: 5px;
 font-weight: bold;
-margin-top: 10px;
+margin: 10px 0 10px 0;
 display: flex;
 justify-content: center;
 }
-
-
 
 /* Message d'erreur */
 .msgError {
@@ -155,14 +153,22 @@ justify-content: center;
     padding: 10px;
     border-radius: 5px;
     font-weight: bold;
-    margin-top: 10px;
+    margin: 10px 0 10px 0;
     display: flex;
     justify-content: center;
 }
 
 
+/***********************************************************
+************************************************************
+Container des différentes pages
+************************************************************
+***********************************************************/
 
-.block {
-    display: block;
-    margin-bottom: 10px;
+
+.page-container h1 {
+    margin-bottom: 20px;
+    font-size: 26px;
+    text-align: center;
+    font-weight: bold;
 }

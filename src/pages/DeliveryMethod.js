@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import '../styles/DeliveryMethod.css';
 import "../styles/Global.css";
 
@@ -9,21 +9,21 @@ function DeliveryMethod(props) {
     const navigate = useNavigate();
     const [errorMsg , setErrorMsg] = useState()
 
-    // pour stocker le choix du mode de livraison
+    // Stockage du choix du mode de livraison
     const [delivery , setDelivery] = useState()
 
-    // fonction englobant tout le formulaire
+    // Fonction englobant tout le formulaire
     function handleSummary(e) {
         e.preventDefault();
         if (delivery === "home" || delivery === "store") {
-            // utiliser useState pour faire passer le choix sur la page summary grâce à navigate
+            // Utilisation de useState pour faire passer le choix sur la page summary grâce à navigate
             navigate("/summary", {state: {delivery}})
         } else {
             setErrorMsg("Veuillez faire un choix");
         }
     }
 
-    // fonction ciblant le bouton radio
+    // Fonction ciblant le bouton radio
     function handleDeliveryChange(e) {
         setDelivery(e.target.value);
     }

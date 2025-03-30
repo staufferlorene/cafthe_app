@@ -23,8 +23,9 @@ function ProductDetails() {
         void fetchProduits()
     }, [id]);
 
+    // Ajout du produit au panier en lui passant les données indiquées
     const handleAddToCart = () => {
-        addItemToCart(produits.Id_produit, produits.Nom_produit, produits.Prix_HT, produits.Prix_TTC, produits.Tva_categorie);
+        addItemToCart(produits.Id_produit, produits.Nom_produit, produits.Prix_HT, produits.Prix_TTC, produits.Tva_categorie, produits.Type_conditionnement);
     };
 
     return (
@@ -34,7 +35,7 @@ function ProductDetails() {
                 </div>
                 <div className="product-text-details">
                     <h1 className="text-title">{produits.Nom_produit}</h1>
-                    <p className="text-description">Description: {produits.Description}</p>
+                    <p className="text-description">{produits.Description}</p>
                     <p className="text-stock">En stock: {produits.Stock}</p>
 
                     {/*Notion "à partir de X €" si vrac*/}

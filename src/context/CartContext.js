@@ -15,7 +15,7 @@ const loadCartFromLocalStorage = () => {
     return storedCart ? JSON.parse(storedCart) : [];
 };
 
-// gérer les différentes actions dans le panier
+// Gérer les différentes actions dans le panier
 const cartReducer = (state, action) => {
     let updatedItems;
 
@@ -32,7 +32,7 @@ const cartReducer = (state, action) => {
         // Ajouter le produit s'il n'est pas déjà dans le panier
         if (!state.items.some(item => item.id === action.payload.Id_produit)) {
             updatedItems.push({
-                // ajouter le produit avec toutes les infos suivantes dans le localstorage
+                // Ajouter le produit avec toutes les infos suivantes dans le localstorage
                 id: action.payload.Id_produit,
                 name: action.payload.Nom_produit,
                 amount: action.payload.Prix_HT,
@@ -50,12 +50,12 @@ const cartReducer = (state, action) => {
         // Màj la quantité du produit voulu
         updatedItems = state.items
             .map(item => {
-                // pour les produits vendu à l'unité on ajoute ou retire de la quantité
+                // Pour les produits vendu à l'unité on ajoute ou retire de la quantité
                 if (item.id === action.payload.Id_produit && item.type_conditionnement === "unitaire") {
                     return  {...item, quantity: item.quantity + action.payload.quantity}
                     }
 
-                // pour les produits vendu en vrac on remplace par la quantité sélectionnée
+                // Pour les produits vendu en vrac on remplace par la quantité sélectionnée
                 if (item.id === action.payload.Id_produit && item.type_conditionnement === "vrac") {
                     return  {...item, quantity: action.payload.quantity}
                 }
@@ -96,11 +96,11 @@ export const CartContextProvider = ({ children }) => {
         localStorage.setItem("cart", JSON.stringify(cartState.items));
     }, [cartState.items]);
 
-    /////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////
     // Actions pour modifier le panier (ajout, màj quantité, suppression, vider panier) //
-    //////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
 
-    // envoi des actions au cartReducer
+    // Envoi des actions au cartReducer qui gère les différentes actions dans le panier
     const addItemToCart = (Id_produit, Nom_produit, Prix_HT, Prix_TTC, Tva_categorie, Type_conditionnement) => {
         cartDispatch({
             type: "AJOUTER_DANS_PANIER",

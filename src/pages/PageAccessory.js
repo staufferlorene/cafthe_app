@@ -23,6 +23,7 @@ function PageAccessory({search}) {
         void fetchProduits()
     }, []);
 
+    // SearchBar
     const filtrerProduits = accessory.filter((produit) => {
         return produit.Nom_produit.toLowerCase().includes(search.toLowerCase());
     });
@@ -49,7 +50,7 @@ function PageAccessory({search}) {
     }
 
     return (
-        <div>
+        <div className="page-container">
             <h1>Liste des accessoires</h1>
 
             <div className="product-list">
