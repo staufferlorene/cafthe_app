@@ -17,9 +17,11 @@ import "../styles/Header.css";
 import Navbar from "./Navbar";
 
 function Header() {
+    const user = JSON.parse(localStorage.getItem("user"));
     const { isAuthenticated, logout } = useContext(AuthContext);
     const { items} = useContext(CartContext);
     const navigate = useNavigate();
+
 
     // Pour le menu burger
     // Gérer son état, false par défaut pour qu'il soit masqué
@@ -43,7 +45,7 @@ function Header() {
 
     // Redirection vers les commandes
     function handleMyOrder() {
-        navigate("/commande/client/:id");
+        navigate(`/commande/client/${user.id}`);
     }
 
     return (
