@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import "../styles/Global.css";
 import "../styles/MyAccount.css";
+import {useNavigate} from "react-router-dom";
 
 function MyAccount(props) {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -13,6 +14,7 @@ function MyAccount(props) {
     const [actifMail, setActifMail] = useState(false);
     const [actifAdresse, setActifAdresse] = useState(false);
     const [actifPassword, setActifPassword] = useState(false);
+    const navigate = useNavigate()
 
     // États pour le mot de passe
     const [ancienMdp, setAncienMdp] = useState("");
@@ -23,7 +25,17 @@ function MyAccount(props) {
     const [succesMsg, setSuccesMsg] = useState("");
     const [errorMsg, setErrorMsg] = useState("");
 
+
+
     useEffect(() => {
+
+        // Blocage accès panier si pas connecté
+        const token = localStorage.getItem("token");
+        if (!token) {
+            console.error("Token manquant, impossible de charger le panier.");
+            navigate("/")
+        } else {
+
         const fetchProduits = async () => {
             try {
                 // Récupération du token
@@ -40,8 +52,8 @@ function MyAccount(props) {
 
         if (user) {
             void fetchProduits();
-        }
-    }, [user.id]);
+        }}
+    }, []);
 
     // Màj la donnée modifiée
     function handleClick(modif) {
@@ -145,7 +157,7 @@ function MyAccount(props) {
 
     return (
         <div className="account-container">
-            <h1>Informations</h1>
+            <h1>Informations personnelles</h1>
             <p>Nom : {infos.Nom_client}</p>
             <p>Prénom : {infos.Prenom_client}</p>
 

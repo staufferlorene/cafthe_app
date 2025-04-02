@@ -10,7 +10,17 @@ function MyOrder(props) {
     const navigate = useNavigate();
 
 
+
     useEffect(() => {
+
+        // Blocage accès panier si pas connecté
+        const token = localStorage.getItem("token");
+        if (!token) {
+            console.error("Token manquant, impossible de charger le panier.");
+            navigate("/")
+        } else {
+
+
         const fetchOrders = async () => {
             try {
                 // Récupération du token
@@ -26,8 +36,8 @@ function MyOrder(props) {
             }
         };
 
-        void fetchOrders()
-    }, [user.id]);
+        void fetchOrders()}
+    }, []);
 
     if (!orders || orders.length === 0) {
         return (
