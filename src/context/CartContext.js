@@ -33,13 +33,13 @@ const cartReducer = (state, action) => {
         if (!state.items.some(item => item.id === action.payload.Id_produit)) {
             updatedItems.push({
                 // Ajouter le produit avec toutes les infos suivantes dans le localstorage
+                quantity: action.payload.Type_conditionnement === "unitaire" ? 1 : 50,
+                amount_TTC: action.payload.Prix_TTC,
                 id: action.payload.Id_produit,
                 name: action.payload.Nom_produit,
                 amount: action.payload.Prix_HT,
-                amount_TTC: action.payload.Prix_TTC,
                 tva_category: action.payload.Tva_categorie,
                 type_conditionnement: action.payload.Type_conditionnement,
-                quantity: action.payload.Type_conditionnement === "unitaire" ? 1 : 50
             });
         }
         console.log(action);
