@@ -1,8 +1,7 @@
 import React, {useContext, useState} from 'react';
 import axios from "axios";
 import {AuthContext} from "../context/AuthContext";
-import {useNavigate} from "react-router-dom";
-import Inscription from "../components/Inscription";
+import {Link, useNavigate} from "react-router-dom";
 import "../styles/Global.css";
 import "../styles/Login.css";
 
@@ -80,11 +79,8 @@ function Login(props) {
                                 <div>{errorMsg}</div>
                             )}
                         <button className="details-btn" type="submit">Se connecter</button>
-                    </form>
-                </div>
-
-                <div>
-                    <Inscription />
+                        <p>Pas encore inscrit ? <Link to={`/inscription`}>S'inscrire</Link></p>
+                        </form>
                 </div>
             </div>
         </div>

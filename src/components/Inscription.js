@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import axios from "axios";
 import "../styles/Global.css";
+import "../styles/Login.css"
+import {Link} from "react-router-dom";
 
 
 function Inscription(props) {
@@ -34,7 +36,7 @@ function Inscription(props) {
 
             try {
                 // Envoi informations saisies à l'API
-                const response = await axios.post(`${process.env.REACT_APP_API_URL}/client/register`,
+                const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/client/register`,
                 {
                         Nom_client: nom,
                         Prenom_client: prenom,
@@ -62,84 +64,88 @@ function Inscription(props) {
     };
 
     return (
-        <div>
+        <div className="login-container">
+            <h1>Bienvenue chez CafThé</h1>
             <h2>Inscription</h2>
-            <form onSubmit={handleSubmit}>
-                <ul>
-                    <li>
-                        <label>Saisir votre nom : </label>
-                        <input
-                            type="text"
-                            value={nom}
-                            onChange={(e) => setNom(e.target.value)}
-                            required
-                        />
-                    </li>
-                    <li>
-                        <label>Saisir votre prénom : </label>
-                        <input
-                            type="text"
-                            value={prenom}
-                            onChange={(e) => setPrenom(e.target.value)}
-                            required
-                        />
-                    </li>
-                    <li>
-                        <label>Saisir votre n° téléphone : </label>
-                        <input
-                            type="tel"
-                            value={tel}
-                            onChange={(e) => setTel(e.target.value)}
-                        />
-                    </li>
-                    <li>
-                        <label>Saisir votre adresse postale : </label>
-                        <input
-                            type="text"
-                            value={adresse}
-                            onChange={(e) => setAdresse(e.target.value)}
-                            required
-                        />
-                    </li>
-                    <li>
-                        <label>Saisir votre adresse mail : </label>
-                        <input
-                            type="email"
-                            value={mail}
-                            onChange={(e) => setMail(e.target.value)}
-                            required
-                        />
-                    </li>
-                    <li>
-                        <label>Définir votre mot de passe : </label>
-                        <input
-                            type="password"
-                            value={mdp_one}
-                            onChange={(e) => setMdp_one(e.target.value)}
-                            required
-                        />
-                    </li>
-                    <li>
-                        <label>Confirmer votre mot de passe : </label>
-                        <input
-                            type="password"
-                            value={mdp_two}
-                            onChange={(e) => setMdp_two(e.target.value)}
-                            required
-                        />
-                    </li>
-                </ul>
+            <div className="login">
+                <form onSubmit={handleSubmit}>
+                    <ul>
+                        <li>
+                            <label>Saisir votre nom : </label>
+                            <input
+                                type="text"
+                                value={nom}
+                                onChange={(e) => setNom(e.target.value)}
+                                required
+                            />
+                        </li>
+                        <li>
+                            <label>Saisir votre prénom : </label>
+                            <input
+                                type="text"
+                                value={prenom}
+                                onChange={(e) => setPrenom(e.target.value)}
+                                required
+                            />
+                        </li>
+                        <li>
+                            <label>Saisir votre n° téléphone : </label>
+                            <input
+                                type="tel"
+                                value={tel}
+                                onChange={(e) => setTel(e.target.value)}
+                            />
+                        </li>
+                        <li>
+                            <label>Saisir votre adresse postale : </label>
+                            <input
+                                type="text"
+                                value={adresse}
+                                onChange={(e) => setAdresse(e.target.value)}
+                                required
+                            />
+                        </li>
+                        <li>
+                            <label>Saisir votre adresse mail : </label>
+                            <input
+                                type="email"
+                                value={mail}
+                                onChange={(e) => setMail(e.target.value)}
+                                required
+                            />
+                        </li>
+                        <li>
+                            <label>Définir votre mot de passe : </label>
+                            <input
+                                type="password"
+                                value={mdp_one}
+                                onChange={(e) => setMdp_one(e.target.value)}
+                                required
+                            />
+                        </li>
+                        <li>
+                            <label>Confirmer votre mot de passe : </label>
+                            <input
+                                type="password"
+                                value={mdp_two}
+                                onChange={(e) => setMdp_two(e.target.value)}
+                                required
+                            />
+                        </li>
+                    </ul>
 
-                {succesMsg && (
-                    <div className="msgSucces">{succesMsg}</div>
-                )}
+                    {succesMsg && (
+                        <div className="msgSucces">{succesMsg}</div>
+                    )}
 
-                {errorMsg && (
-                    <div className="msgError">{errorMsg}</div>
-                )}
+                    {errorMsg && (
+                        <div className="msgError">{errorMsg}</div>
+                    )}
 
-                <button className="details-btn" type="submit">S'inscrire</button>
-            </form>
+                    <button className="details-btn" type="submit">S'inscrire</button>
+                    <p className="inscriprion">Déjà inscrit ? <Link className="inscriprion" to={`/login`}>Se connecter</Link></p>
+                </form>
+            </div>
         </div>
     );
 }

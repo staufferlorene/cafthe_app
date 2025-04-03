@@ -13,7 +13,8 @@ function Footer(props) {
                 <ul><Link to={`/categorie/accessoire`}>Nos accessoires</Link></ul>
                 <ul><Link to={`/coffret`}>Nos coffrets découverte</Link></ul>
                 <ul><Link to={`/selection`}>Notre sélection</Link></ul>
-                <ul><Link to={`/login`}>Se connecter / S'inscrire</Link></ul>
+                <ul><Link to={`/login`}>Se connecter</Link></ul>
+                <ul><Link to={`/inscription`}>S'inscrire</Link></ul>
             </div>
             <div className="liens">
                 <ul><Link to={`/privacy_policy`}>Politique de confidentialité</Link></ul>

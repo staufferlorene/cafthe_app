@@ -17,6 +17,7 @@ import SearchBar from "./components/SearchBar";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import LegalNotices from "./components/LegalNotices";
 import Cgv from "./components/CGV";
+import Inscription from "./components/Inscription";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
                     <Route path={"/"} element={<Layout />}>
                         <Route index element={<Home />}/>
                         <Route path={"login"} element={<Login />} />
+                        <Route path={"inscription"} element={<Inscription />} />
                         <Route path={"/produit/:id"} element={<ProductDetails />} />
                         {/* Intégration de la searchBar sur les différentes pages */}
                         <Route path={"categorie/cafe"} element={<SearchBar page={"cafe"}/>}/>
