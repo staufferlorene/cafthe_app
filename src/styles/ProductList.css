@@ -15,31 +15,50 @@
 
 .coffret {
     background-image: url("/public/coffret.png");
-    background-position: right center;
-    text-align: end;
+    /*background-position: right center;*/
 }
 
 .selection {
     background-image: url("/public/selection.png");
-    background-position: left center;
+    /*background-position: left center;*/
 }
 
 .coffret,
 .selection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
     background-size: contain;
     background-repeat: no-repeat;
-    width: 100%;
+    width: 350px;
     height: 350px;
     font-weight: bold;
-    filter: opacity(75%);
+    background-color: #EBD2B266;
+    background-blend-mode: overlay;
+    background-position: center;
+    text-align: center;
+    border-radius: 8px;
+    cursor: pointer;
 }
+
+.coffret:hover,
+.selection:hover {
+    /* Animation d'élévation au survol */
+    transform: translateY(-5px);
+    /* L'ombre est plus marquée */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+    background-color: #EBD2B250;
+}
+
 
 /* élément commun aux 2 div (texte et image) */
 .coffret p,
 .selection p {
+    text-align: center;
     font-size: 35px;
-    margin-top: 25%;
-    color: #000000;
+    z-index: 10;
+    opacity: 1;
 }
 
 .coffret p {
@@ -57,14 +76,11 @@
     font-weight: bold;
 }
 
+
+
 @media (max-width: 1000px) {
     .banniere {
         flex-direction: column;
-    }
-
-    .coffret,
-    .selection {
-        background-position: center;
-        text-align: center;
+        align-items: center;
     }
 }

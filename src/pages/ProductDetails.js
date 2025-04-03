@@ -31,7 +31,7 @@ function ProductDetails() {
     return (
             <div className={`product-details product-details-${produits.Id_categorie}`}>
                 <div className="product-img-details">
-                    <img className="img-details" src={`/${produits.Chemin_img}`} alt="image de produit vendu par notre enseigne"/>
+                    <img className="img-details" src={`/${produits.Chemin_img}`} alt={"Image " + produits.Chemin_img}/>
                 </div>
                 <div className="product-text-details">
                     <h1 className="text-title">{produits.Nom_produit}</h1>

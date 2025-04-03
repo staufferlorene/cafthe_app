@@ -19,8 +19,8 @@
 }
 
 .cart-table {
-    width: 100%;
-    margin-top: 20px;
+    width: 90%;
+    margin: 0 auto;
 }
 
 .cart-table th {
@@ -32,9 +32,10 @@
 
 .cart-table td {
     padding: 10px;
-    border-bottom: 1px solid #D9D9D9;
+    border-top: 1px solid #D9D9D9;
     text-align: center;
 }
+
 
 /* Si vrac : boutons de quantité + et - */
 .quantity-container {

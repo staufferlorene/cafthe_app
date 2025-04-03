@@ -52,15 +52,38 @@ function MyOrder(props) {
     return (
         <div className="order-container">
             <h1>Commandes</h1>
+            <table className="order-table">
+                <thead>
+                <tr>
+                    <th>Date commande</th>
+                    <th>Statut commande</th>
+                    <th>Montant commande</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
             {orders.map((order) => (
-                <div>
-                {/*Afficher la date au format français*/}
-                <p>Date commande : {new Date(order.Date_commande).toLocaleDateString('fr-FR')}</p>
-                <p>Statut commande : {order.Statut_commande}</p>
-                <p>Montant commande : {order.Montant_commande_TTC} €</p>
-                <button className="details-btn" onClick={() => navigate(`/commande/detail/${order.Id_commande}`)}>Voir détail</button>
-                </div>
+                <tr>
+                    {/*Afficher la date au format français*/}
+                    <td>{new Date(order.Date_commande).toLocaleDateString('fr-FR')}</td>
+                    <td>{order.Statut_commande}</td>
+                    <td>{order.Montant_commande_TTC} €</td>
+                    <td>
+                        <button className="details-btn" onClick={() => navigate(`/commande/detail/${order.Id_commande}`)}>Voir détail</button>
+                    </td>
+                </tr>
             ))}
+                </tbody>
+                </table>
+
+                {/*// <div>*/}
+                {/*// /!*Afficher la date au format français*!/*/}
+                {/*// <p>Date commande : {new Date(order.Date_commande).toLocaleDateString('fr-FR')}</p>*/}
+                {/*// <p>Statut commande : {order.Statut_commande}</p>*/}
+                {/*// <p>Montant commande : {order.Montant_commande_TTC} €</p>*/}
+                {/*// <button className="details-btn" onClick={() => navigate(`/commande/detail/${order.Id_commande}`)}>Voir détail</button>*/}
+                {/*// </div>*/}
+
         </div>
  )}
 

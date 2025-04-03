@@ -83,7 +83,7 @@
 }
 
 .gap {
-    margin-right: 5px;
+    margin: 5px;
 }
 
 @media (max-width: 768px) {

@@ -45,15 +45,7 @@ function OrderDetails(props) {
             <h1>Détail commande</h1>
             <h2>Commande numéro {id}</h2>
             <div className={"command-list"}>
-                {orders.map((order) => (
-                    <div className={"command"}>
-                        <p>Produit : {order.Nom_produit}</p>
-                        <p>Quantité : {order.Quantite_produit_ligne_commande}</p>
-                        <p>Conditionnement : {order.Type_conditionnement}</p>
-                        <p>Prix unitaire TTC : {order.Prix_unitaire_ligne_commande} €</p>
-                        <p>Prix total TTC : {order.Prix_unitaire_ligne_commande * order.Quantite_produit_ligne_commande} €</p>
-                    </div>)
-                )}
+
                 <div className={"command"}>
                     {/*Afficher la date au format français*/}
                     <p>Date commande : {new Date(orders[0].Date_commande).toLocaleDateString('fr-FR')}</p>
@@ -62,6 +54,35 @@ function OrderDetails(props) {
                     <p>Statut de la commande : {orders[0].Statut_commande}</p>
                 </div>
 
+                    <table className="detail-table">
+                        <thead>
+                            <tr>
+                                <th>Produit</th>
+                                <th>Quantité</th>
+                                <th>Conditionnement</th>
+                                <th>Prix unitaire TTC</th>
+                                <th>Prix TTC</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {orders.map((order) => (
+                            <tr>
+                                <td>{order.Nom_produit}</td>
+                                <td>{order.Quantite_produit_ligne_commande} {order.Type_conditionnement === "vrac" ? " g" : ""}</td>
+                                <td>{order.Type_conditionnement}</td>
+                                <td>{order.Prix_unitaire_ligne_commande} €</td>
+                                <td>{(order.Prix_unitaire_ligne_commande * order.Quantite_produit_ligne_commande).toFixed(2)} €</td>
+
+                            </tr>))}
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td className="total-TTC">Total TTC : {orders[0].Montant_commande_TTC} €</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 <button className="details-btn" onClick={() => navigate (`/commande/client/${user.id}`)}> Retour aux commandes</button>
             </div>
         </div>

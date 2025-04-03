@@ -224,7 +224,7 @@ function MyAccount(props) {
 
             <p>Mot de passe : ****** <button className="petit-btn" onClick={() => setActifPassword(!actifPassword)}>Modifier</button></p>
             {actifPassword && (
-                <form onSubmit={handlePassword}>
+                <form onSubmit={handlePassword} className="password-form">
                     <label>Ancien mot de passe : </label>
                     <input
                         type="password"

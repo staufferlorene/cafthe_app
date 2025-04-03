@@ -25,8 +25,16 @@
 .login {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
-    gap: 10px;
+    justify-content: center;
+}
+
+.login p, a {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.login a {
+    color: #010101;
 }
 
 @media (max-width: 880px) {

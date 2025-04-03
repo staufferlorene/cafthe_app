@@ -116,13 +116,20 @@ function Cart() {
                             </tr>
                             );
                         })}
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td className="total-TTC">Total TTC: {totalAmount.toFixed(2)} €</td>
+                            <td></td>
+                        </tr>
                     </tbody>
                 </table>
             )}
 
             {items.length > 0 && (
                 <div>
-                    <p className="cart-total">Total TTC: {totalAmount.toFixed(2)} €</p>
+                    {/*<p className="cart-total">Total TTC: {totalAmount.toFixed(2)} €</p>*/}
                     <button className="details-btn" onClick={handleDeliveryMethod}>Choisir la livraison</button>
                 </div>
             )}
