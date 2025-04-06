@@ -3,7 +3,7 @@ import axios from "axios";
 import {AuthContext} from "../context/AuthContext";
 import {Link, useNavigate} from "react-router-dom";
 import "../styles/Global.css";
-import "../styles/Login.css";
+import "../styles/Login-inscription.css";
 
 
 function Login(props) {
@@ -51,7 +51,7 @@ function Login(props) {
     return (
         <div className="login-container">
             <h1>Bienvenue chez CafThé</h1>
-            <div className="login">
+            <div className="login-inscription">
                 <div>
                     <h2>Connexion</h2>
                         <form onSubmit={handleSubmit}>
@@ -76,7 +76,7 @@ function Login(props) {
                                 </li>
                             </ul>
                             {errorMsg && (
-                                <div>{errorMsg}</div>
+                                <div className="msgError">{errorMsg}</div>
                             )}
                         <button className="details-btn" type="submit">Se connecter</button>
                         <p>Pas encore inscrit ? <Link to={`/inscription`}>S'inscrire</Link></p>

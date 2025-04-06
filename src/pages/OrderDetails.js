@@ -46,20 +46,20 @@ function OrderDetails(props) {
             <h2>Commande numéro {id}</h2>
             <div className={"command-list"}>
 
-                <div className={"command"}>
+                <section className={"command"}>
                     {/*Afficher la date au format français*/}
                     <p>Date commande : {new Date(orders[0].Date_commande).toLocaleDateString('fr-FR')}</p>
                     {/*Utilisation du premier objet présent dans orders[] car la date et le total sont les mêmes partout*/}
                     <p>Montant total commande TTC : {orders[0].Montant_commande_TTC} €</p>
                     <p>Statut de la commande : {orders[0].Statut_commande}</p>
-                </div>
+                </section>
 
+                <section>
                     <table className="detail-table">
                         <thead>
                             <tr>
                                 <th>Produit</th>
                                 <th>Quantité</th>
-                                <th>Conditionnement</th>
                                 <th>Prix unitaire TTC</th>
                                 <th>Prix TTC</th>
                             </tr>
@@ -69,7 +69,6 @@ function OrderDetails(props) {
                             <tr>
                                 <td>{order.Nom_produit}</td>
                                 <td>{order.Quantite_produit_ligne_commande} {order.Type_conditionnement === "vrac" ? " g" : ""}</td>
-                                <td>{order.Type_conditionnement}</td>
                                 <td>{order.Prix_unitaire_ligne_commande} €</td>
                                 <td>{(order.Prix_unitaire_ligne_commande * order.Quantite_produit_ligne_commande).toFixed(2)} €</td>
 
@@ -78,12 +77,13 @@ function OrderDetails(props) {
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td></td>
                             <td className="total-TTC">Total TTC : {orders[0].Montant_commande_TTC} €</td>
                         </tr>
                         </tbody>
                     </table>
-                <button className="details-btn" onClick={() => navigate (`/commande/client/${user.id}`)}> Retour aux commandes</button>
+                </section>
+
+                <button className="details-btn btn-detail" onClick={() => navigate (`/commande/client/${user.id}`)}> Retour aux commandes</button>
             </div>
         </div>
     );

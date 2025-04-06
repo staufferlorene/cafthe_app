@@ -15,8 +15,8 @@ function ProductCard({produit}) {
 
     return (
         // Récupération catégorie pour appliquer en CSS un style différent sur chaque catégorie
-        <div className={`product-card product-card-${produit.Id_categorie}`}>
-            <img className="product-img" src={`/${produit.Chemin_img}`} alt={"Image" + produit.Chemin_img} />
+        <section className={`product-card product-card-${produit.Id_categorie}`}>
+            <img className="product-img" src={`/${produit.Chemin_img}`} alt={"Image " + produit.Chemin_img} />
             <h3>{produit.Nom_produit}</h3>
 
             {/*Notion "à partir de X €" si vrac*/}
@@ -30,7 +30,7 @@ function ProductCard({produit}) {
             <button className="details-btn" onClick={() => handleAddToCart(produit.Id_produit)}>
                 Ajouter au panier
             </button>
-        </div>
+        </section>
     );}
 
 export default ProductCard;

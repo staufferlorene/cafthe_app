@@ -48,20 +48,25 @@ table {
     border-spacing: 0;
 }
 
-/* Import de la police sur google font */
+
+/************************************************************
+***********************************************************
+Import de la police sur google font
+************************************************************
+***********************************************************/
 
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Poetsen+One&display=swap');
 
 
+
 /***********************************************************
 ************************************************************
-STYLE DIV
+STYLE GENERAL
 ************************************************************
 ***********************************************************/
 .flex {
     display: flex;
 }
-
 
 p,
 a,
@@ -111,6 +116,7 @@ h3 {
     cursor: pointer;
     border: none;
     margin-left: 10px;
+    align-self: center;
 }
 
 /***********************************************************
@@ -119,7 +125,6 @@ LIENS
 ************************************************************
 ***********************************************************/
 
-/* Style des liens */
  a {
     text-decoration: none;
 }
@@ -161,7 +166,7 @@ justify-content: center;
 
 /***********************************************************
 ************************************************************
-Container des différentes pages
+Container des différentes pages produits
 ************************************************************
 ***********************************************************/
 
@@ -171,4 +176,39 @@ Container des différentes pages
     font-size: 26px;
     text-align: center;
     font-weight: bold;
+}
+
+
+/***********************************************************
+************************************************************
+Container arrière plan encadré blanc
+************************************************************
+***********************************************************/
+
+.box-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #FBFBFB;
+    border-radius: 8px;
+}
+
+/***********************************************************
+************************************************************
+Skeleton
+************************************************************
+***********************************************************/
+
+.product-skeleton {
+    border-radius: 8px;
+    /* Ombre autour de la carte */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    /* Animation d'élévation au survol */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: calc(33% - 20px);
+    max-width: 300px;
+    margin: 10px;
+    box-sizing: border-box;
 }

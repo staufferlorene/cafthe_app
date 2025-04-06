@@ -2,7 +2,7 @@ import React from 'react';
 
 function Cgv(props) {
     return (
-        <div className="footer-detail">
+        <div className="box-container footer-detail">
             <h1>Conditions Générales de Vente (CGV)</h1>
 
             <h2>1. Objet</h2>

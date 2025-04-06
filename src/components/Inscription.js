@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import axios from "axios";
 import "../styles/Global.css";
-import "../styles/Login.css"
+import "../styles/Login-inscription.css"
 import {Link} from "react-router-dom";
 
 
@@ -67,7 +67,7 @@ function Inscription(props) {
         <div className="login-container">
             <h1>Bienvenue chez CafThé</h1>
             <h2>Inscription</h2>
-            <div className="login">
+            <div className="login-inscription">
                 <form onSubmit={handleSubmit}>
                     <ul>
                         <li>

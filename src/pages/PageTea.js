@@ -34,7 +34,7 @@ function PageTea({search}) {
                 {Array.from({length : 6}).map((_,i) => (
                     <div key={i} className="product-skeleton">
                         {/*Image*/}
-                        <Skeleton height={200} width={300} />
+                        <Skeleton height={200} width="100%" />
 
                         <div style={{marginTop: "10px"}}>
                             <Skeleton height={20} width="70%" />

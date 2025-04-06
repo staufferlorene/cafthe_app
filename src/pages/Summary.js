@@ -130,13 +130,19 @@ function Summary(props) {
                                 </tr>
                             );
                         })}
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td className="Total-TTC">Total TTC: {totalAmount.toFixed(2)} €</td>
+                        </tr>
                     </tbody>
                 </table>
             )}
 
-            {cart.length > 0 && (
-            <div><p className="Total-TTC">Total TTC: {totalAmount.toFixed(2)} €</p></div>
-            )}
+            {/*{cart.length > 0 && (*/}
+            {/*<div><p className="Total-TTC">Total TTC: {totalAmount.toFixed(2)} €</p></div>*/}
+            {/*)}*/}
 
             <h2>Votre mode de livraison</h2>
 
@@ -152,7 +158,6 @@ function Summary(props) {
             {delivery === "store" && (
                 <button className="details-btn" onClick={() => handlePayment("inStore")}>Payer en magasin</button>
             )}
-
         </div>
     )
 }

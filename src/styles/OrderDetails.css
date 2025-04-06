@@ -46,3 +46,17 @@
 .total-TTC {
     font-weight: bold;
 }
+
+@media (max-width: 530px) {
+
+    .detail-table th,
+    .detail-table td {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .btn-detail {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+}

@@ -1,7 +1,7 @@
 /* Style du conteneur principal */
 .cart-container {
     max-width: 900px;
-    margin: 40px auto;
+    margin: 40px auto 100px auto;
     padding: 20px;
     background: #FBFBFB;
     border-radius: 8px;

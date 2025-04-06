@@ -1,0 +1,86 @@
+/* Style du conteneur principal */
+.login-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #FBFBFB;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.login-container h1 {
+    font-size: 28px;
+    margin-bottom: 40px;
+}
+
+.login-container h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.login-container button {
+    margin-top: 10px;
+}
+
+.login-inscription {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.login-inscription p, a {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.login-inscription a {
+    color: #010101;
+}
+
+form ul li {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 10px;
+}
+
+form ul li label {
+    width: 180px;
+    text-align: right;
+    margin-right: 10px;
+}
+
+form ul li input {
+    flex: 1; /* Prend le reste de l'espace disponible */
+    padding: 3px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+@media (max-width: 880px) {
+    .login-inscription {
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+    }
+
+    form ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+    }
+
+    form ul li {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+    }
+
+    form ul li label {
+        text-align: center;
+        width: auto;
+        margin-bottom: 5px;
+    }
+}

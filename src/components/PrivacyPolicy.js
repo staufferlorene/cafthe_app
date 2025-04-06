@@ -3,7 +3,7 @@ import "../styles/Global.css";
 
 function PrivacyPolicy(props) {
     return (
-        <div className="footer-detail">
+        <div className="box-container footer-detail">
 
             <h1>Politique de confidentialité</h1>
 
@@ -17,19 +17,16 @@ function PrivacyPolicy(props) {
 
             <p>Nous collectons les informations suivantes lorsque vous utilisez notre Site :</p>
 
-            <p>Informations personnelles : Nom, adresse e-mail, adresse de livraison, numéro de téléphone, informations de paiement (cartes de crédit, informations bancaires) que vous nous fournissez lors de l'achat ou de la création de votre compte.</p>
-            <p>Informations sur la navigation : Adresse IP, type de navigateur, pages visitées, temps passé sur le site, informations relatives aux produits consultés, et d'autres informations collectées par le biais de cookies.</p>
-            <p>Cookies et technologies similaires : Nous utilisons des cookies et d'autres technologies pour améliorer l'expérience utilisateur, analyser l'utilisation de notre Site, personnaliser les offres et les publicités, et mieux comprendre vos préférences.</p>
+            <p>Informations personnelles : Nom, prénom, numéro de téléphone, adresse e-mail, adresse postale, que vous nous fournissez lors de la création de votre compte.</p>
+            <p>Cookies et technologies similaires : Nous n'utilisons pas de cookies.</p>
 
             <h2>2. Utilisation des informations</h2>
 
             <p>Nous utilisons les informations collectées pour les finalités suivantes :</p>
 
-            <p>Traiter et gérer vos commandes (livraison, paiement, suivi de commande).</p>
+            <p>Traiter et gérer vos commandes (livraison, suivi de commande).</p>
             <p>Créer et gérer votre compte utilisateur.</p>
             <p>Vous envoyer des informations sur vos commandes, des confirmations, des mises à jour et d'autres communications nécessaires.</p>
-            <p>Améliorer notre Site et nos services (analyse des données de navigation, préférences, etc.).</p>
-            <p>Vous envoyer des offres marketing, des promotions ou des informations sur nos produits et services, sous réserve de votre consentement lorsque cela est requis.</p>
             <p>Répondre à vos demandes de service client.</p>
             <p>Se conformer aux obligations légales et réglementaires.</p>
 
@@ -50,7 +47,6 @@ function PrivacyPolicy(props) {
 
             <p>Accès et mise à jour : Vous pouvez accéder à vos informations personnelles et les mettre à jour via votre compte utilisateur.</p>
            <p>Suppression des données : Vous pouvez demander la suppression de vos informations personnelles sous certaines conditions.</p>
-            <p>Consentement : Vous pouvez à tout moment retirer votre consentement à la réception de communications marketing en suivant les instructions de désabonnement ou en nous contactant.</p>
             <p>Droit à la portabilité : Vous avez le droit de demander une copie de vos données personnelles dans un format structuré, couramment utilisé et lisible par machine.</p>
             <p>Si vous souhaitez exercer vos droits, veuillez nous contacter à l'adresse suivante : cafthe@email.com.</p>
 

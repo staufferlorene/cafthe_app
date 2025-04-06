@@ -23,10 +23,6 @@
     margin-bottom: 10px;
 }
 
-body {
-    min-height: 100vh;
-}
-
 .password-form {
     display: flex;
     flex-direction: column;

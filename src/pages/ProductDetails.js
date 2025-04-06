@@ -29,7 +29,7 @@ function ProductDetails() {
     };
 
     return (
-            <div className={`product-details product-details-${produits.Id_categorie}`}>
+            <section className={`product-details product-details-${produits.Id_categorie}`}>
                 <div className="product-img-details">
                     <img className="img-details" src={`/${produits.Chemin_img}`} alt={"Image " + produits.Chemin_img}/>
                 </div>
@@ -47,7 +47,7 @@ function ProductDetails() {
                         Ajouter au panier
                     </button>
                 </div>
-            </div>
+            </section>
     );
 }
 

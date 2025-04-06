@@ -2,7 +2,7 @@ import React from 'react';
 
 function LegalNotices(props) {
     return (
-        <div className="footer-detail">
+        <div className="box-container footer-detail">
             <h1>Mentions Légales</h1>
 
                 <h2>1. Informations Générales</h2>
@@ -34,7 +34,7 @@ function LegalNotices(props) {
 
             <h2>5. Cookies</h2>
 
-                <p>Le site utilise des cookies afin d'améliorer l'expérience utilisateur et analyser le trafic. L'utilisateur peut configurer son navigateur pour accepter ou refuser les cookies.</p>
+                <p>Le site n'utilise pas de cookies.</p>
 
             <h2>6. Droit Applicable</h2>
 
