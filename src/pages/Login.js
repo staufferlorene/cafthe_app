@@ -57,7 +57,7 @@ function Login(props) {
                         <form onSubmit={handleSubmit}>
                             <ul>
                                 <li>
-                                    <label>Saisir votre mail : </label>
+                                    <label>E-mail : </label>
                                     <input
                                         type="email"
                                         value={email}
@@ -66,7 +66,7 @@ function Login(props) {
                                     />
                                 </li>
                                 <li>
-                                    <label>Saisir votre mot de passe : </label>
+                                    <label>Mot de passe : </label>
                                     <input
                                         type="password"
                                         value={mdp}

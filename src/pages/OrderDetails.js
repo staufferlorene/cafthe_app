@@ -30,7 +30,7 @@ function OrderDetails(props) {
 
     if (!orders || orders.length === 0) {
         return (
-            <div>
+            <div className="order-details-container">
                 <p>La commande est vide ou inexistante</p>
 
                 <Link to={`/`} className={"details-btn"}>
